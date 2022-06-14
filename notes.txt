@@ -1,0 +1,42 @@
+User story:
+
+as a user I want to be able to search movies and get streaming details, details about the movie and ratings.
+
+When I search a movie,
+Then I am presented with movie details and where to watch them. 
+I click the streaming service in which I wanna watch and I am redirected there.
+
+When user input name and presses button, 
+logic checks for validations, if not valid ("enter a valid name")
+if valid, API fetch movie info and where to watch, (if not found "No search results")
+all info is displayed on screen with links to streamers.
+history is created
+user can visit history and search from there
+
+title: pending
+
+info:
+synopsis
+rating (PG)
+movie length
+main-cast
+poster
+genre
+director
+reviews
+trailer
+release date
+
+where to watch:
+showtimes near me (if release date > current date= "coming soon")
+streaming platforms;
+
+footer :
+made with love
+
+extra:
+search by actor or actress
+checkbox
+series
+dark mode to light mode
+
