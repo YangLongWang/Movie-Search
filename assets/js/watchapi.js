@@ -1,6 +1,6 @@
 //DOM 
-var movieformEl = document.getElementById("#movie-form");
-var movieInputEl = document.getElementById("#search-input");
+var movieformEl = document.querySelector("#movie-form");
+var movieInputEl = document.querySelector("#search-input");
 
 //Array that holds api key and other verification
 const options = {
@@ -27,8 +27,21 @@ var getWatchApi = function(){
 //search function
 var movieSearchHandler = function(event) {
     event.preventDefault();
-    console.log(event);
-}
+//get value from input element
+ var movie = movieInputEl.value.trim();
+
+    if (movie) {
+        getWatchApi(movie);
+        movieInputEl.value = "";
+    }else {
+        //**can we use alerts/prompts for this project?** 
+        alert("Please enter a movie name");
+    }
+};
+
+//event listener 
+movieformEl.addEventListener("submit", movieSearchHandler);
+
 
 
 //reference data
