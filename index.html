@@ -13,32 +13,54 @@
 
 <body>
     <!--Search-->
-   <div class="hero is-info">
-    <div class="hero-body container has-text-centered">
-    <h1 id="page-title" class="title is-1">Movie Search</h1>
-    <p class="subtitle">
-        Search for past, present, and upcoming movie info
-    </p>
-    <input type="text" placeholder="Movie name here" class="input is-warning">
-    <button class="button is-responsive is-primary">Search</button>
+    <div class="hero is-info">
+        <div class="hero-body container has-text-centered">
+            <h1 id="page-title" class="title is-1">Movie Search</h1>
+            <p class="subtitle">
+                Search for past, present, and upcoming movie info
+            </p>
+            <input type="text" placeholder="Movie name here" class="input is-warning">
+            <button class="button is-responsive is-primary">Search</button>
+        </div>
     </div>
-   </div>
 
     <section id="info">
-        <h2 id="movie-title">title here</h2>
-        <img src="" alt="">
-        <p id="synopsis">About movie here</p>
-        <p id="cast">cast</p>
-        <p id="etc">etc</p>
+        <div id="primary_info">
+            <h2 id="movie_title">title here</h2>
+            <img src="./assets/images/placeholder.jpg" alt="movie poster">
+            <p id="synopsis">About movie here</p>
+            <p id="rating">PG13</p>
+            <p id="genre">Horror</p>
+            <p id="director">Michael Bay</p>
+            <p id="length">Length: 1:20:30</p>
+            <p id="date">Release Date: 20/10/2022</p>
+        </div>
+        <div id="secondary_info">
+            <p id="trailer">trailers goes here. Youtube widget</p>
+            <ol id="review_list">
+                <li class="review">Review 1</li>
+                <li class="review">Review 2</li>
+            </ol>
+        </div>
     </section>
-
-    <section id="where">
-        <h2>where to watch</h2>
-        <ol id="list of providers">
-            <li class="streamer">list of places</li>
-        </ol>
-        <h2>showtimes</h2>
-        <p>this place</p>
+    <section id="watch">
+        <div id="stream">
+            <h2>Where to watch on-line</h2>
+            <ol id="stream_list">
+                <li class="streamer"><a href="">Netflix</a></li>
+                <li class="streamer"><a href="">Crave</a></li>
+                <li class="streamer"><a href="">Prime</a></li>
+                <li class="streamer"><a href="">Hulu</a></li>
+                <li class="streamer"><a href=""></a>HBO Max</li>
+            </ol>
+        </div>
+        <div id="watch_local">
+            <h2>Watch near you</h2>
+            <ol id="local_list">
+                <li class="showtime">11:00pm</li>
+                <li class="showtime">05:00am</li>
+            </ol>
+        </div>
     </section>
 
     <script src="./assets/js/logic.js"></script>
