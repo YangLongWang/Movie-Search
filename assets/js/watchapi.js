@@ -8,9 +8,14 @@ const options = {
 
 
 var getWatchApi = function(){ 
-    var response= fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=netflix&type=movie&genre=18&page=1&output_language=en&language=en', options).then(response => response.json())
-    console.log(response);
-};
+    var response= fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=netflix&type=movie&genre=18&page=1&output_language=en&language=en', options).then(function(response) {
+        response.json().then(function(data) {
+            console.log(data);
+        });
+       
+    }
+   
+)};
 
 getWatchApi();
 
