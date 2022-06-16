@@ -17,7 +17,6 @@ btn.addEventListener("click", function () {
             lat = data.latitude.toString();
             long = data.longitude.toString();
             let location = lat + ";" + long;
-            info(location);
         });
 })
 
