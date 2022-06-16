@@ -11,17 +11,24 @@ const options = {
 	}
 };
 
+let movieTerm ='';
 
-
-var getWatchApi = function(){ 
-    var response= fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=netflix&type=movie&genre=18&page=1&output_language=en&language=en', options).then(function(response) {
+var getWatchApi = function(movie){ 
+     fetch("https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=netflix&type=movie&keyword=" + movie  + "&page=1&output_language=en&language=en", options).then(function(response) {
         response.json().then(function(data) {
             console.log(data);
+        movieTerm= data;    
+            displayWatchInfo(movieTerm);
         });
        }
    )};
 
-//getWatchApi();
+//display data
+var displayWatchInfo = function(movieTerm) {
+    console.log(movieTerm);
+
+
+};
 
 
 //search function
