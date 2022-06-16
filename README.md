@@ -11,6 +11,6 @@ movie of the night key:
 ## Images
 
 ![Wireframe](/assets/images/wireframe.png)
-
+![](./assets/images/movie%20info.PNG)
 
 
