@@ -1,6 +1,8 @@
 //DOM 
 var movieformEl = document.querySelector("#movie-form");
 var movieInputEl = document.querySelector("#search-input");
+var movieInfoEl = document.querySelector("#movie_title");
+
 
 //Array that holds api key and other verification
 const options = {
@@ -11,8 +13,10 @@ const options = {
 	}
 };
 
+//data value is set to movieTerm and used in var displayWatchInfo
 let movieTerm ='';
 
+//Makes fetch call 
 var getWatchApi = function(movie){ 
      fetch("https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=netflix&type=movie&keyword=" + movie  + "&page=1&output_language=en&language=en", options).then(function(response) {
         response.json().then(function(data) {
@@ -25,8 +29,8 @@ var getWatchApi = function(movie){
 
 //display data
 var displayWatchInfo = function(movieTerm) {
-    console.log(movieTerm);
-
+    //console.log(movieTerm.results[0].title);
+movieInfoEl.textContent= movieTerm.results[0].title;
 
 };
 
@@ -34,7 +38,7 @@ var displayWatchInfo = function(movieTerm) {
 //search function
 var movieSearchHandler = function(event) {
     event.preventDefault();
-//get value from input element
+//get value from input element and eliminates extra spaces 
  var movie = movieInputEl.value.trim();
 
     if (movie) {
