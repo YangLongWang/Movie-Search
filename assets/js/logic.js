@@ -41,6 +41,7 @@ function info(location) {
     });
 }
 
+//test with this
 function info(id) {
     fetch("https://api-gate2.movieglu.com/filmDetails/?film_id=" + id + "", {
         headers: {
