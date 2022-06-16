@@ -1,7 +1,10 @@
 //DOM 
 var movieformEl = document.querySelector("#movie-form");
 var movieInputEl = document.querySelector("#search-input");
-var movieInfoEl = document.querySelector("#movie_title");
+var movieTitleEl = document.querySelector("#movie_title");
+var movieInfoEl = document.querySelector("#synopsis");
+var movieLengthEl = document.querySelector("#length");
+var movieDateEl = document.querySelector("#date");
 
 
 //Array that holds api key and other verification
@@ -30,7 +33,10 @@ var getWatchApi = function(movie){
 //display data
 var displayWatchInfo = function(movieTerm) {
     //console.log(movieTerm.results[0].title);
-movieInfoEl.textContent= movieTerm.results[0].title;
+movieTitleEl.textContent= movieTerm.results[0].title;
+movieInfoEl.textContent=movieTerm.results[0].overview;
+movieLengthEl.textContent=movieTerm.results[0].runtime;
+movieDateEl.textContent=movieTerm.results[0].year;
 
 };
 
