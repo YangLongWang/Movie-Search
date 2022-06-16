@@ -5,27 +5,32 @@ info(184126)
 
 let btn = document.querySelector(".button");
 
-function httpGetAsync(url, callback) {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function () {
-        if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
-            callback(xmlHttp.responseText);
-    }
-    xmlHttp.open("GET", url, true); // true for asynchronous
-    xmlHttp.send(null);
-}
 
-var url = "https://ipgeolocation.abstractapi.com/v1/?api_key=627ce180f6b942d38cd09ef7905db024"
 
-httpGetAsync(url)
 
 btn.addEventListener("click", function () {
+    let apiKey = '627ce180f6b942d38cd09ef7905db024';
+    fetch('https://ipgeolocation.abstractapi.com/v1/?api_key=' + apiKey)
+        .then(response => response.json())
+        .then(data => {
+            console.log((data))
+            lat = data.latitude.toString();
+            long = data.longitude.toString();
+            let location = lat + ";" + long;
+            info(location);
+        });
+})
+
+function info(location) {
     info = document.querySelector("input").value;
+    now = getTime();
+    console.log(now);
     fetch("https://api-gate2.movieglu.com/filmLiveSearch/?query=" + info + "&n=6", {
         headers: {
             "Api-Version": "v200",
             "Authorization": "Basic U1RVRF8yMjM6Mk9sVEhKMGJjbElO",
             "Client": "STUD_223",
+            "location": location,
             "Device-Datetime": "2022-06-16T18:38:24.857Z",
             "Territory": "CA",
             "X-Api-Key": "vJ66865rhP2CnGnuEHAg22qFVMVD26YJ4CcdT11v"
@@ -35,7 +40,7 @@ btn.addEventListener("click", function () {
             console.log(data);
         })
     });
-})
+}
 
 function info(id) {
     fetch("https://api-gate2.movieglu.com/filmDetails/?film_id=" + id + "", {
