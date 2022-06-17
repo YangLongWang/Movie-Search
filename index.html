@@ -13,19 +13,22 @@
 
 <body>
     <!--Search-->
-    <div class="hero is-info">
+    <header class="hero is-info">
         <div class="hero-body container has-text-centered">
             <h1 id="page-title" class="title is-1">Movie Search</h1>
             <p class="subtitle">
                 Search for past, present, and upcoming movie info
             </p>
-            <input type="text" placeholder="Movie name here" class="input is-warning">
-            <button class="button is-responsive is-primary">Search</button>
+            <form id="movie-form">
+                <input type="text" placeholder="Movie name here" class="input is-warning" id="search-input">
+                <button class="button is-responsive is-primary" id="search-btn">Search</button>
+            </form>
         </div>
-    </div>
+    </header>
+
     <section id="info">
         <div id="primary_info">
-            <h2 id="movie_title">title here</h2>
+            <h2 id="movie_title"></h2>
             <img src="./assets/images/placeholder.jpg" alt="movie poster">
             <p id="synopsis">About movie here</p>
             <p id="rating">PG13</p>
