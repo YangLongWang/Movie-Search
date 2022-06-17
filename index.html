@@ -15,46 +15,50 @@
 
 <body>
     <!-- Header Banner -->
-    <section class="hero is-info p-5">
-        <div class="hero-head">
-            <nav class="navbar">
-                <div class="container">
-                    <div class="navbar-brand">
-                        <a class="navbar-item">
-                            <p>Temporary</p>
-                        </a>
-                        <span class="navbar-burger" data-target="navbarMenuHeroB"></span>
-                    </div>
-                    <div id="navbarMenuHeroB" class="navbar-menu">
-                        <div class="navbar-start">
-                            <a href="./index.html" class="navbar-item is-active">
-                                Home
-                            </a>
-                            <a href="#movie-info-part" class="navbar-item">
-                                Movie
-                            </a>
-                            <a href="#contact-part" class="navbar-item">
-                                Contact Us
-                            </a>
+    <div class="columns is-gapless">
+        <div class="column">
+            <section class="hero is-info p-5">
+                <div class="hero-head">
+                    <nav class="navbar">
+                        <div class="container">
+                            <div class="navbar-brand">
+                                <a class="navbar-item">
+                                    <p>Temporary</p>
+                                </a>
+                                <span class="navbar-burger" data-target="navbarMenuHeroB"></span>
+                            </div>
+                            <div id="navbarMenuHeroB" class="navbar-menu">
+                                <div class="navbar-start">
+                                    <a href="./index.html" class="navbar-item is-active">
+                                        Home
+                                    </a>
+                                    <a href="#movie-info-part" class="navbar-item">
+                                        Movie
+                                    </a>
+                                    <a href="#contact-part" class="navbar-item">
+                                        Contact Us
+                                    </a>
+                                </div>
+                            </div>
                         </div>
+                    </nav>
+                </div>
+                <!--Search-->
+                <div class="hero-body">
+                    <div class="container has-text-centered">
+                        <h1 id="page-title" class="title is-1">Movie Search</h1>
+                        <p class="subtitle">
+                            Search for past, present, and upcoming movie info
+                        </p>
+                        <form id="movie-form">    
+                            <input type="text" placeholder="Movie name here" class="input is-warning" id="search-input">
+                            <button class="button is-responsive is-primary" id="search-btn">Search</button>
+                        </form> 
                     </div>
                 </div>
-            </nav>
+            </section>
         </div>
-        <!--Search-->
-        <div class="hero-body">
-            <div class="container has-text-centered">
-                <h1 id="page-title" class="title is-1">Movie Search</h1>
-                <p class="subtitle">
-                    Search for past, present, and upcoming movie info
-                </p>
-                <form id="movie-form">    
-                    <input type="text" placeholder="Movie name here" class="input is-warning" id="search-input">
-                    <button class="button is-responsive is-primary" id="search-btn">Search</button>
-                </form> 
-            </div>
-        </div>
-    </section>
+    </div>
     <!-- <section class="hero is-info">
         <div class="hero-body container has-text-centered">
             <h1 id="page-title" class="title is-1">Movie Search</h1>
@@ -69,7 +73,7 @@
     </section> -->
 
     <!-- Movie Info -->
-    <div class="columns" id="movie-info-part">
+    <div class="columns is-gapless" id="movie-info-part">
         <div class="column is-three-fifths has-background-primary">
             <section id="info">
                 <section id="primary_info" class="section content py-2 pb-2">
@@ -119,7 +123,7 @@
 
                     <div class="columns">
                         <div class="column is-two-fifths">
-                            <img src="./assets/images/placeholder.jpg" alt="movie poster">
+                            <img id = "movie-img" src="./assets/images/placeholder.jpg" alt="movie poster">
                         </div>
                         <div class="column">
                             <p id ="synopsis">Summary</p>
@@ -167,7 +171,7 @@
         </div>
     </div>
 
-    <div class="columns" id="contact-part">
+    <div class="columns is-gapless has-background-info" id="contact-part">
         <div class="column">
             <section class="section content p-2">
                 <h2>Contact Us</h2>
