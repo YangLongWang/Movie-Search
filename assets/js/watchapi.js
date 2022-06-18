@@ -22,12 +22,15 @@ let movieTerm ='';
 //Makes fetch call 
 var getWatchApi = function(movie){ 
      fetch("https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=netflix&type=movie&keyword=" + movie  + "&page=1&output_language=en&language=en", options).then(function(response) {
+     /*if checks that the request was successful. When the HTTP request status code is in the 200's, the 'ok' property  
+     will be true. */ 
      if (response.ok) {   
         response.json().then(function(data) {
             console.log(data);
         movieTerm= data;    
             displayWatchInfo(movieTerm);
      });
+     //if the ok property is false we know that the request was unsuccessful. 
        } else {
          alert("Error");
        }
