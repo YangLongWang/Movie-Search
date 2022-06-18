@@ -35,7 +35,7 @@ var getWatchApi = function(movie){
          alert("Error");
        }
     })
-    //network error 
+    //network error - if you want to test a network error disconnect from the internet and try a search
      .catch(function(error){
         alert("unable to connect to server");
      });   
