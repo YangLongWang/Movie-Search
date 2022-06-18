@@ -32,7 +32,7 @@ var getWatchApi = function(movie){
      });
      //if the ok property is false we know that the request was unsuccessful. 
        } else {
-         alert("Error");
+         alert("Error: There was a problem with your request");
        }
     })
     //network error - if you want to test a network error disconnect from the internet and try a search
