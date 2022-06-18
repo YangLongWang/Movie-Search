@@ -34,7 +34,12 @@ var getWatchApi = function(movie){
        } else {
          alert("Error");
        }
-    })};
+    })
+    //network error 
+     .catch(function(error){
+        alert("unable to connect to server");
+     });   
+};
 
 //display data
 var displayWatchInfo = function(movieTerm) {
