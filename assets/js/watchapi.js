@@ -26,6 +26,7 @@ var getWatchApi = function(movie){
             console.log(data);
         movieTerm= data;    
             displayWatchInfo(movieTerm);
+            render_page(movieTerm);
         });
        }
    )};

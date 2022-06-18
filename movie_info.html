@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,64 +11,7 @@
     <link rel="stylesheet" href="./assets/style/style.css">
     <title>Temporary</title>
 </head>
-
 <body>
-    <!-- Header Banner -->
-    <div class="columns is-gapless">
-        <div class="column">
-            <section class="hero is-info p-5">
-                <div class="hero-head">
-                    <nav class="navbar">
-                        <div class="container">
-                            <div class="navbar-brand">
-                                <a class="navbar-item">
-                                    <p>Temporary</p>
-                                </a>
-                                <span class="navbar-burger" data-target="navbarMenuHeroB"></span>
-                            </div>
-                            <div id="navbarMenuHeroB" class="navbar-menu">
-                                <div class="navbar-start">
-                                    <a href="./index.html" class="navbar-item is-active">
-                                        Home
-                                    </a>
-                                    <a href="#now" class="navbar-item">
-                                        Movie
-                                    </a>
-                                    <a href="#contact-part" class="navbar-item">
-                                        Contact Us
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </nav>
-                </div>
-                <!--Search-->
-                <div class="hero-body">
-                    <div class="container has-text-centered is-size-3">
-                        <h1 id="page-title" class="title is-1">Movie Search</h1>
-                        <p class="subtitle">
-                            Search for past, present, and upcoming movie info
-                        </p>
-                        <form id="movie-form">    
-                            <input type="text" placeholder="Movie name here" class="input is-warning" id="search-input"><br/>
-                            <button class="button is-responsive is-primary" id="search-btn">Search</button>
-                        </form> 
-                    </div>
-                </div>
-            </section>
-        </div>
-    </div>
-
-    <!-- Movie Info -->
-    <div class="columns has-background-primary">
-        <div class="column">
-            <section class="section content p-2">
-                <h2 class="title">Now Showing Movies</h2>
-                <div class="columns is-multiline is-centered has-background-primary" id="now"></div>                
-            </section>
-        </div>
-    </div>
-
     <div class="columns is-gapless" id="movie-info-part">
         <div class="column is-two-thirds has-background-primary">
             <section id="info">
@@ -140,6 +82,9 @@
                     <p id="date">Release Date: 20/10/2022</p> -->
                 </section>
                 <section id="secondary_info" class="section content py-2 pb-2">
+                    
+
+                    
                     <p id="trailer">trailers goes here. Youtube widget</p>
                 </section>
             </section>
@@ -168,24 +113,7 @@
         </div>
     </div>
 
-    <div class="columns is-gapless has-background-info" id="contact-part">
-        <div class="column">
-            <section class="section content p-2">
-                <h2>Contact Us</h2>
-                <ul>
-                    <li>Github</li>
-                    <li>Github</li>
-                    <li>Github</li>
-                    <li>Github</li>
-                    <li>Github</li>
-                </ul>
-            </section>
-        </div>
-    </div>
+    
 
-    <script src="./assets/js/app.js"></script>
-    <script src="./assets/js/logic.js"></script>
-    <script src="./assets/js/watchapi.js"></script>
 </body>
-
 </html>
