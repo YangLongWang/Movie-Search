@@ -3,7 +3,8 @@ var searchInputEl = document.getElementById("search-input");
 var filterBtnEl = document.getElementById("filter-btn");
 var formEl = document.getElementById("movie-form");
 var filterModalEl = document.getElementById("filter-modal");
-var modalCloseBtn = document.getElementById("close-modal");
+var modalCloseBtn = document.getElementById("modal-cancel-btn");
+var pageEl = document.querySelector("html");
 
 
 var startSearch = function(event) {
@@ -24,7 +25,8 @@ var startSearch = function(event) {
 
 var callModal = function(event) {
     console.log("filtering");
-    filterModalEl.className = "modal is-active is-clipped";
+    filterModalEl.className = "modal is-active";
+    pageEl.className = "is-clipped"
 
 };
 
@@ -45,6 +47,7 @@ var inputHandler = function(event) {
 
 var closeModal = function() {
     filterModalEl.className = "modal";
+    pageEl.className = "";
 };
 
 // added listener directly to btn
