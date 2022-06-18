@@ -38,12 +38,16 @@ var getWatchApi = function(movie){
 
 //display data
 var displayWatchInfo = function(movieTerm) {
+    //checks for search results, if none inform user.  
+    if (movieTerm.results === 0) {
+        alert("No search results found");
+        return;
+    } else (movieTerm.results > 0) 
     //console.log(movieTerm.results[0].title);
-movieTitleEl.textContent= movieTerm.results[0].title;
-movieInfoEl.textContent=movieTerm.results[0].overview;
-movieLengthEl.textContent=movieTerm.results[0].runtime;
-movieDateEl.textContent=movieTerm.results[0].year;
-
+         movieTitleEl.textContent= movieTerm.results[0].title;
+         movieInfoEl.textContent=movieTerm.results[0].overview;
+         movieLengthEl.textContent=movieTerm.results[0].runtime;
+         movieDateEl.textContent=movieTerm.results[0].year;
 };
 
 
