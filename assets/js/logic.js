@@ -46,14 +46,27 @@ var inputHandler = function(event) {
 
 };
 
-// var closeModal = function() {
-//     filterModalEl.className = "modal";
-//     pageEl.className = "";
-// };
 
-// added listener directly to btn
-// searchBtnEl.addEventListener("click", startSearch);
-// filterBtnEl.addEventListener("click", callModal);
+var loadPreferences = function() {
+    preferences = JSON.parse(localStorage.getItem("search-preference"));
+    // console.log(preferences);
+
+    if (!preferences) {
+        preferences = {};
+    }
+    var cbPreferenceArr = document.querySelectorAll(".filter-option");
+
+    for (var i = 0; i < cbPreferenceArr.length; i++) {
+        // console.log(cbPreferenceArr[i].getAttribute("name"));
+        if (preferences[cbPreferenceArr[i].getAttribute("name")] === true) {
+            // console.log(cbPreferenceArr[i]);
+            cbPreferenceArr[i].checked = true;
+        } else {
+            cbPreferenceArr[i].checked = false;
+        }
+    }
+
+};
 
 var savePreferences = function() {
     // select all checkboxes
@@ -68,7 +81,9 @@ var savePreferences = function() {
         // push to preference object
         preferences[preferenceName] = preferenceState;
     }
-    console.log(preferences);
+    // console.log(preferences);
+    // save to local storage
+    localStorage.setItem("search-preference", JSON.stringify(preferences));
 };
 
 formEl.addEventListener("click", inputHandler);
@@ -79,6 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Functions to open and close a modal
     function openModal($el) {
       $el.classList.add('is-active');
+      loadPreferences();
     }
     
     function closeModal($el) {
@@ -86,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // add scrollbar back to main HTML
         pageEl.className = "";
         // save filter preferences
-        savePreferences();
+        // savePreferences();
     }
   
     function closeAllModals() {
@@ -101,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const $target = document.getElementById(modal);
   
       $trigger.addEventListener('click', () => {
-        openModal($target);
+          openModal($target);
       });
     });
   
@@ -109,9 +125,13 @@ document.addEventListener('DOMContentLoaded', () => {
     (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
       const $target = $close.closest('.modal');
   
-      $close.addEventListener('click', () => {
-        closeModal($target);
-      });
+        $close.addEventListener('click', (event) => {
+            if (event.target.id === "modal-save-btn") {
+                // console.log("saving");
+                savePreferences();
+            }
+            closeModal($target);
+        });
     });
   
     // Add a keyboard event to close all modals
@@ -123,3 +143,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // load from localStorage
+  loadPreferences();
