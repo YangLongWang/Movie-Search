@@ -22,22 +22,37 @@ let movieTerm ='';
 //Makes fetch call 
 var getWatchApi = function(movie){ 
      fetch("https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=netflix&type=movie&keyword=" + movie  + "&page=1&output_language=en&language=en", options).then(function(response) {
+     /*if checks that the request was successful. When the HTTP request status code is in the 200's, the 'ok' property  
+     will be true. */ 
+     if (response.ok) {   
         response.json().then(function(data) {
             console.log(data);
         movieTerm= data;    
             displayWatchInfo(movieTerm);
-        });
+     });
+     //if the ok property is false we know that the request was unsuccessful. 
+       } else {
+         alert("Error: There was a problem with your request");
        }
-   )};
+    })
+    //network error - if you want to test a network error disconnect from the internet and try a search
+     .catch(function(error){
+        alert("unable to connect to server");
+     });   
+};
 
 //display data
 var displayWatchInfo = function(movieTerm) {
+    //checks for search results, if none inform user.  
+    if (movieTerm.results === 0) {
+        alert("No search results found");
+        return;
+    } else (movieTerm.results > 0) 
     //console.log(movieTerm.results[0].title);
-movieTitleEl.textContent= movieTerm.results[0].title;
-movieInfoEl.textContent=movieTerm.results[0].overview;
-movieLengthEl.textContent=movieTerm.results[0].runtime;
-movieDateEl.textContent=movieTerm.results[0].year;
-
+         movieTitleEl.textContent= movieTerm.results[0].title;
+         movieInfoEl.textContent=movieTerm.results[0].overview;
+         movieLengthEl.textContent=movieTerm.results[0].runtime;
+         movieDateEl.textContent=movieTerm.results[0].year;
 };
 
 
