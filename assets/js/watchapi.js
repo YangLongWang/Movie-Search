@@ -22,13 +22,16 @@ let movieTerm ='';
 //Makes fetch call 
 var getWatchApi = function(movie){ 
      fetch("https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=netflix&type=movie&keyword=" + movie  + "&page=1&output_language=en&language=en", options).then(function(response) {
+     if (response.ok) {   
         response.json().then(function(data) {
             console.log(data);
         movieTerm= data;    
             displayWatchInfo(movieTerm);
-        });
+     });
+       } else {
+         alert("Error");
        }
-   )};
+    })};
 
 //display data
 var displayWatchInfo = function(movieTerm) {
