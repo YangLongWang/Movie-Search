@@ -22,8 +22,7 @@ var startSearch = function(event) {
         // call functions to fetch from APIs based on movieTitle
     // else alert user to input something
     } else {
-        // start modal
-        // alert("Please enter a movie name");
+        // start alert modal
         alertModalEl.classList.add("is-active");
         pageEl.classList.add("is-clipped");
     }
@@ -36,20 +35,20 @@ var callModal = function(event) {
 
 };
 
-var inputHandler = function(event) {
-    event.preventDefault();
-    // console.log(event.target.id);
-    var inputId = event.target.id;
+// var inputHandler = function(event) {
+//     event.preventDefault();
+//     // console.log(event.target.id);
+//     var inputId = event.target.id;
 
-    if (inputId === "search-btn") {
-        // console.log("searching");
-        startSearch();
-    // } else if (inputId === "filter-btn") {
-    //     // console.log("filtering");
-    //     callModal();
-    }
+//     if (inputId === "search-btn") {
+//         // console.log("searching");
+//         startSearch();
+//     // } else if (inputId === "filter-btn") {
+//     //     // console.log("filtering");
+//     //     callModal();
+//     }
 
-};
+// };
 
 
 var loadPreferences = function() {
@@ -58,6 +57,7 @@ var loadPreferences = function() {
 
     if (!preferences) {
         preferences = {};
+        // this ensures that first users will see all checked boxes consistently
         savePreferences();
     }
     var cbPreferenceArr = document.querySelectorAll(".filter-option");
@@ -78,6 +78,7 @@ var savePreferences = function() {
     // select all checkboxes
     var cbPreferenceArr = document.querySelectorAll(".filter-option");
     // console.dir(cbPreferenceArr[0]);
+
     //loop through all of them
     for (var i = 0; i < cbPreferenceArr.length; i++) {
         // in loop, retrieve name and status
@@ -91,6 +92,7 @@ var savePreferences = function() {
     // save to local storage
     localStorage.setItem("search-preference", JSON.stringify(preferences));
 };
+
 // disabling for now
 //formEl.addEventListener("click", inputHandler);
 
