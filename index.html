@@ -3,62 +3,189 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Website icon -->
+    <link rel="shortcut icon" href="./assets/images/favicon (1).ico" type="image/x-icon">
     <!--Bulma link-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma-rtl.min.css">
     <link rel="stylesheet" href="./assets/style/style.css">
-    <title>Watch Easy</title>
+    <title>Temporary</title>
 </head>
 
 <body>
-    <!--Search-->
-    <header class="hero is-info">
-        <div class="hero-body container has-text-centered">
-            <h1 id="page-title" class="title is-1">Watch Easy</h1>
-            <p class="subtitle">
-                Search for past, present, and upcoming movie info
-            </p>
-            <form id="movie-form">
-                <input type="text" placeholder="Movie name here" class="input is-warning" id="search-input">
-                <button class="button is-responsive is-primary" id="search-btn">Search</button>
-            </form>
+    <!-- Header Banner -->
+    <div class="columns is-gapless">
+        <div class="column">
+            <section class="hero is-info p-5">
+                <div class="hero-head">
+                    <nav class="navbar">
+                        <div class="container">
+                            <div class="navbar-brand">
+                                <a class="navbar-item">
+                                    <p>Temporary</p>
+                                </a>
+                                <span class="navbar-burger" data-target="navbarMenuHeroB"></span>
+                            </div>
+                            <div id="navbarMenuHeroB" class="navbar-menu">
+                                <div class="navbar-start">
+                                    <a href="./index.html" class="navbar-item is-active">
+                                        Home
+                                    </a>
+                                    <a href="#now" class="navbar-item">
+                                        Movie
+                                    </a>
+                                    <a href="#contact-part" class="navbar-item">
+                                        Contact Us
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <!--Search-->
+                <div class="hero-body">
+                    <div class="container has-text-centered is-size-3">
+                        <h1 id="page-title" class="title is-1">Movie Search</h1>
+                        <p class="subtitle">
+                            Search for past, present, and upcoming movie info
+                        </p>
+                        <form id="movie-form">    
+                            <input type="text" placeholder="Movie name here" class="input is-warning" id="search-input"><br/>
+                            <button class="button is-responsive is-primary" id="search-btn">Search</button>
+                        </form> 
+                    </div>
+                </div>
+            </section>
         </div>
-    </header>
+    </div>
 
-    <section id="info">
-        <div id="primary_info">
-            <h2 id="movie_title"></h2>
-            <img id="poster" alt="movie poster">
-            <p id="synopsis"></p>
-            <p id="rating"></p>
-            <p id="star"></p>
-            <ol id="genre"></ol>
-            <ol id="director"></ol>
-            <p id="length"></p>
-            <p id="date"></p>
-            <ol id="cast"></ol>
-            <p id="language"></p>
+    <!-- Movie Info -->
+    <div class="columns has-background-primary">
+        <div class="column">
+            <section class="section content p-2">
+                <h2 class="title">Now Showing Movies</h2>
+                <div class="columns is-multiline is-centered has-background-primary" id="now"></div>                
+            </section>
         </div>
-        <div id="secondary_info">
-            <video id="trailer" controls></video>
-            <ol id="review_list">
-            </ol>
-        </div>
-    </section>
-    <section id="watch">
-        <div id="stream">
-            <h2>Where to watch on-line</h2>
-            <ol id="stream_list">
-            </ol>
-        </div>
-        <div id="watch_local">
-            <h2>Watch near you</h2>
-            <ol id="local_list">
-            </ol>
-        </div>
-    </section>
+    </div>
 
+    <div class="columns is-gapless" id="movie-info-part">
+        <div class="column is-two-thirds has-background-primary">
+            <section id="info">
+                <section id="primary_info" class="section content py-2 pb-2">
+                    <h2 id="movie_title">Movie Title</h2>
+                    <div class="columns">
+                        <div class="column">
+                            <nav class="level">
+                                <div class="level-item has-text-centered">
+                                    <div>
+                                        <p class="heading">Genre</p>
+                                        <p id="genre" class="title"></p>
+                                    </div>
+                                </div>
+                                <div class="level-item has-text-centered">
+                                    <div>
+                                        <p class="heading">Country</p>
+                                        <p class="title"></p>
+                                    </div>
+                                </div>
+                                <div class="level-item has-text-centered">
+                                    <div>
+                                        <p class="heading">Year</p>
+                                        <p id="date" class="title"></p>
+                                    </div>
+                                </div>
+                                <div class="level-item has-text-centered">
+                                    <div>
+                                        <p class="heading">Language</p>
+                                        <p class="title"></p>
+                                    </div>
+                                </div>
+                                <div class="level-item has-text-centered">
+                                    <div>
+                                        <p class="heading">Movie Length</p>
+                                        <p id="length" class="title"></p>
+                                    </div>
+                                </div>
+                                <div class="level-item has-text-centered">
+                                    <div>
+                                        <p class="heading">Rating</p>
+                                        <p id="rating" class="title"></p>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>      
+
+                    <div class="columns">
+                        <div class="column is-two-fifths">
+                            <img id = "movie-img" src="./assets/images/placeholder.jpg" alt="movie poster">
+                        </div>
+                        <div class="column">
+                            <p id ="synopsis">Summary</p>
+                            <p><strong>Director: </strong><span id ="director">Michael Bay</span></p>
+                            <p><strong>Cast: </strong><span id ="main-cast"></span></p>
+                            <ul id="review_list">
+                                <li class="review">Review 1</li>
+                                <li class="review">Review 2</li>
+                            </ul>                            
+                        </div>
+                    </div>
+                    <!-- <p id="synopsis">Summary</p> -->
+                    <!-- <p id="rating">PG13</p>
+                    <p id="genre">Horror</p> -->
+                    <!-- <p id="director">Michael Bay</p> -->
+                    <!-- <p id="length">Length: 1:20:30</p>
+                    <p id="date">Release Date: 20/10/2022</p> -->
+                </section>
+                <section id="secondary_info" class="section content py-2 pb-2">
+                    <p id="trailer">trailers goes here. Youtube widget</p>
+                </section>
+            </section>
+        </div>
+
+        <div class="column has-background-info">
+            <section id="watch" class="section">
+                <div id="stream">
+                    <h2>Where to watch on-line</h2>
+                    <ol id="stream_list">
+                        <li class="streamer"><a href="">Netflix</a></li>
+                        <li class="streamer"><a href="">Crave</a></li>
+                        <li class="streamer"><a href="">Prime</a></li>
+                        <li class="streamer"><a href="">Hulu</a></li>
+                        <li class="streamer"><a href=""></a>HBO Max</li>
+                    </ol>
+                </div>
+                <div id="watch_local">
+                    <h2>Watch near you</h2>
+                    <ol id="local_list">
+                        <li class="showtime">11:00pm</li>
+                        <li class="showtime">05:00am</li>
+                    </ol>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="columns is-gapless has-background-info" id="contact-part">
+        <div class="column">
+            <section class="section content p-2">
+                <h2>Contact Us</h2>
+                <ul>
+                    <li>Github</li>
+                    <li>Github</li>
+                    <li>Github</li>
+                    <li>Github</li>
+                    <li>Github</li>
+                </ul>
+            </section>
+        </div>
+    </div>
+
+    <script src="./assets/js/app.js"></script>
     <script src="./assets/js/logic.js"></script>
+    <script src="./assets/js/watchapi.js"></script>
 </body>
 
 </html>
