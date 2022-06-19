@@ -10,14 +10,82 @@ var movieRatingEl = document.querySelector("#rating");
 var movieCastEl = document.querySelector("#cast");
 var moviePosterEl = document.querySelector("#poster");
 var movieDirectorEl = document.querySelector("#director");
+var movieWriterEl = document.querySelector("#writers");
 var movieTrailerEl = document.querySelector("#trailer");
 var movieReviewEl = document.querySelector("#review_list");
 var movieStreamEl = document.querySelector("#stream_list");
 var movieShowtimeEl = document.querySelector("#local_list");
 var movieLanguageEl = document.querySelector("#language");
 var movieStarEl = document.querySelector("#star");
+var searchBtnEl = document.getElementById("search-btn");
+var searchInputEl = document.getElementById("search-input");
 
 // info(184126)
+
+//movie now
+window.onload = function () {
+    let apiKey = '627ce180f6b942d38cd09ef7905db024';
+    fetch('https://ipgeolocation.abstractapi.com/v1/?api_key=' + apiKey)
+        .then(response => response.json())
+        .then(data => {
+            console.log((data))
+            country = data.country_code;
+            playingNow(country);
+        });
+}
+var playingNow = function (country) {
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+    fetch("https://api.themoviedb.org/3/movie/now_playing?api_key=094c84db597deb498f8d90a2474513fe&language=en-US&page=1&region=" + country, requestOptions)
+        .then(function (response) {
+            response.json().then(function (data) {
+                console.log(data);
+                // count: data.results.length
+                for (var i = 0; i < data.results.length; i++) {
+                    // console.log(data.results[i].poster_path);
+                    var backImage = data.results[i].poster_path;
+                    var backtitle = data.results[i].original_title;
+
+                    var movieCardImage = "https://image.tmdb.org/t/p/w500" + backImage;
+
+                    // console.log(movieCardImage);
+
+                    var col = document.createElement("div");
+                    col.classList.add("column", "is-narrow", "is-one-fifth");
+
+                    var card = document.createElement("div");
+                    card.classList.add("card");
+
+                    var cardImage = document.createElement("div");
+                    cardImage.classList.add("card-image");
+
+                    var moviePoster = document.createElement("figure");
+                    moviePoster.classList.add("image");
+
+                    var pic = document.createElement("img");
+                    pic.setAttribute("src", movieCardImage);
+
+                    var cardContent = document.createElement("div");
+                    cardContent.classList.add("card-content", "has-text-centered");
+
+                    var contentTitle = document.createElement("p");
+                    contentTitle.classList.add("title", "is-5");
+                    contentTitle.textContent = backtitle;
+
+                    cards.appendChild(col);
+                    col.appendChild(card);
+                    card.appendChild(cardImage);
+                    cardImage.appendChild(moviePoster);
+                    moviePoster.appendChild(pic);
+                    card.appendChild(cardContent);
+                    cardContent.appendChild(contentTitle);
+
+                }
+            })
+        }).catch(error => console.log('error', error));
+};
 
 //IP adress look up API
 var GetLocation = function (movie) {
@@ -30,10 +98,7 @@ var GetLocation = function (movie) {
             passthrough = movie;
             idSearch(passthrough, country);
         });
-}
-
-//API key declaration
-key2 = "cfff8e47bbmsh52112d53558a8c6p18b44djsn557c06239ea5";
+};
 
 //function to look up IMDB ID
 var idSearch = function (movie, country) {
@@ -48,14 +113,16 @@ var idSearch = function (movie, country) {
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            topId = data.results[0].id.slice(7, 16);
+            Id = data.results[0].id.slice(7, 16);
             topTitle = data.results[0].title;
             passthrough = country
-            MovieInfo(topId);
-            trailer(topId);
-            getWatchApi(topId, passthrough);
+            MovieInfo(Id);
+            trailer(Id);
+            topCrew(Id);
+            userReviews(Id)
+            getWatchApi(Id, passthrough);
         })
-}
+};
 
 //function for movie info
 var MovieInfo = function (id) {
@@ -85,25 +152,26 @@ var MovieInfo = function (id) {
                 movieGenreEl.appendChild(li);
             }
         })
-}
-
-//Array that holds api key and other verification
-const options = {
-    method: 'GET',
-    headers: {
-        'X-RapidAPI-Key': 'cfff8e47bbmsh52112d53558a8c6p18b44djsn557c06239ea5',
-        'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
-    }
 };
 
 //data value is set to movieTerm and used in var displayWatchInfo
 let movieTerm = '';
 
-//Makes fetch call 
+//Watch API function
 var getWatchApi = function (movie, country) {
+    //keys for request
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': 'cfff8e47bbmsh52112d53558a8c6p18b44djsn557c06239ea5',
+            'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
+        }
+    };
+    //request
     fetch("https://streaming-availability.p.rapidapi.com/get/basic?country=" + country + "&imdb_id=" + movie + "&output_language=en", options)
         .then(function (response) {
             response.json().then(function (data) {
+                //data format and display
                 console.log(data);
                 movieTerm = data;
                 movieTitleEl.innerHTML = data.title;
@@ -113,17 +181,13 @@ var getWatchApi = function (movie, country) {
                 minute = length % 60;
                 movieLengthEl.innerHTML = hour + ":" + minute
                 console.log(movieLengthEl);
-
+                //loop to display cast
                 for (let i = 0; i < data.cast.length; i++) {
                     let li = document.createElement("li");
                     li.innerText = data.cast[i];
                     movieCastEl.appendChild(li);
                 }
-
-                if (data.streamingInfo == null || data.streamingInfo == "") {
-                    console.log("good");
-                }
-
+                //loop for available streaming platforms
                 for (let i = 0; i < data.streamingInfo.length; i++) {
                     let li = Document.createElement("li");
                     li.innerText = data.streamingInfo[i];
@@ -134,7 +198,6 @@ var getWatchApi = function (movie, country) {
         )
 };
 
-
 //event handler function
 var movieSearchHandler = function (event) {
     event.preventDefault();
@@ -142,18 +205,33 @@ var movieSearchHandler = function (event) {
     var movie = movieInputEl.value.trim();
     if (movie) {
         while (movieCastEl.firstChild) {
+            //reset lists from earlier
             movieCastEl.removeChild(movieCastEl.firstChild);
+        };
+        while (movieWriterEl.firstChild) {
+            //reset lists from earlier
+            movieWriterEl.removeChild(movieWriterEl.firstChild);
+        };
+        while (movieDirectorEl.firstChild) {
+            //reset lists from earlier
+            movieDirectorEl.removeChild(movieDirectorEl.firstChild);
+        };
+        while (movieReviewEl.firstChild) {
+            //reset lists from earlier
+            movieReviewEl.removeChild(movieReviewEl.firstChild);
+        };
+        while (movieGenreEl.firstChild) {
+            //reset lists from earlier
+            movieGenreEl.removeChild(movieGenreEl.firstChild);
         }
         GetLocation(movie);
         movieInputEl.value = "";
-    } else {
-        //**can we use alerts/prompts for this project?** 
-        alert("Please enter a movie name");
-    }
+    };
 };
 
-//movie trailer
+//get trailer info
 var trailer = function (id) {
+    //key for request
     const options = {
         method: 'GET',
         headers: {
@@ -161,15 +239,18 @@ var trailer = function (id) {
             'X-RapidAPI-Host': 'online-movie-database.p.rapidapi.com'
         }
     };
+    //request for trailer id
     fetch('https://online-movie-database.p.rapidapi.com/title/get-videos?tconst=' + id + '&limit=1&region=US', options)
         .then(response => response.json())
         .then(data => {
             videoId = data.resource.videos[0].id.slice(9);
             trailerDisplay(videoId);
         }).catch(err => console.error(err));
-}
+};
 
+//display trailer on page
 var trailerDisplay = function (id) {
+    //key for request
     const options = {
         method: 'GET',
         headers: {
@@ -177,6 +258,7 @@ var trailerDisplay = function (id) {
             'X-RapidAPI-Host': 'online-movie-database.p.rapidapi.com'
         }
     };
+    //display on page
     fetch('https://online-movie-database.p.rapidapi.com/title/get-video-playback?viconst=' + id, options)
         .then(response => response.json())
         .then(data => {
@@ -184,38 +266,68 @@ var trailerDisplay = function (id) {
             movieTrailerEl.setAttribute("type", data.resource.encodings[1].mimeType);
             movieTrailerEl.setAttribute("src", data.resource.encodings[1].playUrl);
         })
+};
+
+var topCrew = function (id) {
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': 'cfff8e47bbmsh52112d53558a8c6p18b44djsn557c06239ea5',
+            'X-RapidAPI-Host': 'online-movie-database.p.rapidapi.com'
+        }
+    };
+
+    fetch('https://online-movie-database.p.rapidapi.com/title/get-top-crew?tconst=' + id, options)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            for (i = 0; i < data.directors.length; i++) {
+                let li = document.createElement("li");
+                li.innerHTML = data.directors[i].name;
+                movieDirectorEl.appendChild(li);
+            };
+            for (let i = 0; i < data.writers.length; i++) {
+                let li = document.createElement("li");
+                li.innerHTML = data.writers[i].name;
+                movieWriterEl.appendChild(li);
+            }
+        })
+        .catch(err => console.error(err));
 }
 
-//event handler function call
+var userReviews = function (id) {
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': 'cfff8e47bbmsh52112d53558a8c6p18b44djsn557c06239ea5',
+            'X-RapidAPI-Host': 'online-movie-database.p.rapidapi.com'
+        }
+    };
+
+    fetch('https://online-movie-database.p.rapidapi.com/title/get-user-reviews?tconst=tt0944947', options)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            for (let i = 0; i < 5; i++) {
+                let li = document.createElement("li");
+                li.setAttribute("id", "reviewItem");
+                let author = document.createElement("p");
+                author.innerHTML = "Author" + data.reviews[i].author.displayname;
+                let rating = document.createElement("p");
+                rating.innerHTML = data.reviews[i].authorRating;
+                let title = document.createElement("p");
+                title.innerHTML = data.reviews[i].reviewTitle;
+                let text = document.createElement("p");
+                text.innerHTML = data.reviews[i].reviewText;
+                li.appendChild(author);
+                li.appendChild(rating);
+                li.appendChild(title);
+                li.appendChild(text);
+                movieReviewEl.appendChild(li);
+            }
+        })
+        .catch(err => console.error(err));
+}
+
+//form submit event call
 movieformEl.addEventListener("submit", movieSearchHandler);
-
-
-
-//reference data
-/*
-fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=netflix&type=movie&genre=18&page=1&output_language=en&language=en', options)
-    .then(response => response.json())
-    .then(response => console.log(response))
-    .catch(err => console.error(err));
-*/
-var searchBtnEl = document.getElementById("search-btn");
-var searchInputEl = document.getElementById("search-input");
-
-
-var startSearch = function (event) {
-    // console.log(searchInputEl.value.trim());
-
-    // get input from user and store it in movieTitle
-    var movieTitle = searchInputEl.value.trim();
-
-    // if the user input something -not blank- call APIs
-    if (movieTitle) {
-        // call functions to fetch from APIs based on movieTitle
-        // else alert user to input something
-    } else {
-        alert("Please enter a movie name");
-    }
-}
-
-// added listener directly to btn
-searchBtnEl.addEventListener("click", startSearch);
