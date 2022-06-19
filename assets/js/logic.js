@@ -27,34 +27,59 @@ var pageEl = document.querySelector("html");
 var preferences = {};
 var alertModalEl = document.getElementById("alert-modal");
 
-// info(184126)
-
-//movie now
-var cards = document.querySelector("#now");
-
-
+//now playing 
 window.onload = function () {
-
+    let apiKey = '627ce180f6b942d38cd09ef7905db024';
+    fetch('https://ipgeolocation.abstractapi.com/v1/?api_key=' + apiKey)
+        .then(response => response.json())
+        .then(data => {
+            country = data.country_code;
+            movieNow(country);
+        });
+};
+var movieNow = function (country) {
     var requestOptions = {
         method: 'GET',
         redirect: 'follow'
     };
 
-    fetch("https://api.themoviedb.org/3/movie/now_playing?api_key=094c84db597deb498f8d90a2474513fe&language=en-US&page=1&region=US", requestOptions).then(function (response) {
+    fetch("https://api.themoviedb.org/3/movie/now_playing?api_key=094c84db597deb498f8d90a2474513fe&language=en-US&page=1&region=" + country, requestOptions).then(function (response) {
         response.json().then(function (data) {
-            // count: data.results.length
             for (var i = 0; i < data.results.length; i++) {
                 var backImage = data.results[i].poster_path;
-                var backtitle = data.results[i].original_title;
+                var backtitle = data.results[i].title;
+                var cards = document.querySelector("#now");
 
                 var movieCardImage = "https://image.tmdb.org/t/p/w500" + backImage;
-
 
                 var col = document.createElement("div");
                 col.classList.add("column", "is-narrow", "is-one-fifth");
 
                 var card = document.createElement("div");
                 card.classList.add("card");
+                card.addEventListener("click", function () {
+                    while (movieCastEl.firstChild) {
+                        //reset lists from earlier
+                        movieCastEl.removeChild(movieCastEl.firstChild);
+                    };
+                    while (movieWriterEl.firstChild) {
+                        //reset lists from earlier
+                        movieWriterEl.removeChild(movieWriterEl.firstChild);
+                    };
+                    while (movieDirectorEl.firstChild) {
+                        //reset lists from earlier
+                        movieDirectorEl.removeChild(movieDirectorEl.firstChild);
+                    };
+                    while (movieReviewEl.firstChild) {
+                        //reset lists from earlier
+                        movieReviewEl.removeChild(movieReviewEl.firstChild);
+                    };
+                    while (movieGenreEl.firstChild) {
+                        //reset lists from earlier
+                        movieGenreEl.removeChild(movieGenreEl.firstChild);
+                    }
+                    GetLocation(backtitle);
+                })
 
                 var cardImage = document.createElement("div");
                 cardImage.classList.add("card-image");
@@ -84,7 +109,6 @@ window.onload = function () {
         })
     }).catch(error => console.log('error', error));
 }
-
 
 //IP adress look up API
 var GetLocation = function (movie) {
@@ -177,7 +201,7 @@ var getWatchApi = function (movie, country) {
                 minute = length % 60;
                 movieLengthEl.innerHTML = hour + ":" + minute
                 //loop to display cast
-                for (let i = 0; i < data.cast.length; i++) {
+                for (let i = 0; i < 5; i++) {
                     let li = document.createElement("li");
                     li.innerText = data.cast[i];
                     movieCastEl.appendChild(li);
@@ -244,12 +268,15 @@ var topCrew = function (id) {
     fetch('https://online-movie-database.p.rapidapi.com/title/get-top-crew?tconst=' + id, options)
         .then(response => response.json())
         .then(data => {
-            for (i = 0; i < data.directors.length; i++) {
+            console.log(data);
+            for (i = 0; i < 3; i++) {
                 let li = document.createElement("li");
                 li.innerHTML = data.directors[i].name;
                 movieDirectorEl.appendChild(li);
             };
-            for (let i = 0; i < data.writers.length; i++) {
+
+
+            for (let i = 0; i < 3; i++) {
                 let li = document.createElement("li");
                 li.innerHTML = data.writers[i].name;
                 movieWriterEl.appendChild(li);
@@ -319,6 +346,9 @@ var startSearch = function (event) {
         while (movieGenreEl.firstChild) {
             //reset lists from earlier
             movieGenreEl.removeChild(movieGenreEl.firstChild);
+        };
+        while (movieStreamEl.firstChild) {
+            movieStreamEl.removeChild(movieStreamEl.firstChild);
         }
         GetLocation(movieTitle);
     } else {
