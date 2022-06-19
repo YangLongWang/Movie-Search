@@ -52,7 +52,7 @@
                         </p>
                         <form id="movie-form">    
                             <input type="text" placeholder="Movie name here" class="input is-warning" id="search-input">
-                            <button class="button is-responsive is-primary" id="search-btn">Search</button>
+                            <button class="button is-responsive is-primary" id="search-btn" data-target="alert-modal">Search</button>
                             <button class="button is-responsive is-warning js-modal-trigger" data-target="filter-modal" id="filter-btn">Filter</button>
                         </form> 
                     </div>
@@ -239,8 +239,8 @@
                             <label for="filter-hulu">Hulu</label><br />
                             <input type="checkbox" id="filter-hbomax" name="hbomax" class="filter-option">
                             <label for="filter-hbomax">HBO Max</label><br />
-                            <input type="checkbox" id="filter-theaters" name="theaters" class="filter-option">
-                            <label for="filter-theaters">Theaters Near Me</label>
+                            <!-- <input type="checkbox" id="filter-theaters" name="theaters" class="filter-option">
+                            <label for="filter-theaters">Theaters Near Me</label> -->
                         </div>
                     </div>
                 </form>
@@ -254,6 +254,27 @@
       </div>
 
     <!-- Filtering modal end -->
+
+    <!-- empty input field alert modal -->
+        <div class="modal" id="alert-modal">
+            <!-- set modal background to cover main site -->
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Check input</p>
+                    <button class="delete" aria-label="close"></button>
+                  </header>
+                  <section class="modal-card-body">
+                    <p>Input field cannot be blank. Please enter a movie or series name then search again!</p>
+                  </section>
+                  <footer class="modal-card-foot">
+                    <button class="button is-success">Ok</button>
+                  </footer>
+            </div>
+
+      </div>
+
+    <!-- empty input field modal end -->
 
     <script src="./assets/js/logic.js"></script>
     <!-- <script src="./assets/js/watchapi.js"></script> -->

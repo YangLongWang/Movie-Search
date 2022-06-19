@@ -6,6 +6,7 @@ var filterModalEl = document.getElementById("filter-modal");
 var modalCloseBtn = document.getElementById("modal-cancel-btn");
 var pageEl = document.querySelector("html");
 var preferences = {};
+var alertModalEl = document.getElementById("alert-modal");
 
 
 var startSearch = function(event) {
@@ -20,14 +21,17 @@ var startSearch = function(event) {
         // call functions to fetch from APIs based on movieTitle
     // else alert user to input something
     } else {
-        alert("Please enter a movie name");
+        // start modal
+        // alert("Please enter a movie name");
+        alertModalEl.classList.add("is-active");
+        pageEl.classList.add("is-clipped");
     }
 };
 
 var callModal = function(event) {
-    console.log("filtering");
-    filterModalEl.className = "modal is-active";
-    pageEl.className = "is-clipped"
+    // console.log("filtering");
+    filterModalEl.classList.add("is-active");
+    pageEl.classList.add("is-clipped");
 
 };
 
