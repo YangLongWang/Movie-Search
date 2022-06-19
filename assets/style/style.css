@@ -10,3 +10,6 @@ body {
     width: 400px;
 }
 
+.GitImg img {
+    max-height: 80px !important;
+}
