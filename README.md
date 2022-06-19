@@ -20,6 +20,14 @@
  What problem does it solve?
 
 - The site eliminates the need to make extra searches for streaming avaliability, trailers, movie info, and now playing information for theatres. 
+
+ What did you learn?
+
+ - (TBA)
+
+ What make your project stand out? (MAYBE?)
+
+ - (TBA) 
  
 
 ## User Story
@@ -27,20 +35,27 @@
 
 ## Features
 
+(To be completed once all project features ready)
 
 
 
-## Links
+
+## Initial Design Concept 
+
+
+![Wireframe](/assets/images/wireframe.png)
+![Updated Wireframe](./assets/images/movie%20info.PNG)
+
+
+## Live Site Images
+
+(Add screenshots of functionality)
+
+
+## Links (To be removed on project completion)
 - https://api-registration.movieglu.com/api_demo/
 - MovieGlu key: vJ66865rhP2CnGnuEHAg22qFVMVD26YJ4CcdT11v
 
 - https://rapidapi.com/movie-of-the-night-movie-of-the-night-default/api/streaming-availability/
 movie of the night key:
 - cfff8e47bbmsh52112d53558a8c6p18b44djsn557c06239ea5
-
-## Images - Initial design concept 
-
-![Wireframe](/assets/images/wireframe.png)
-![Updated Wireframe](./assets/images/movie%20info.PNG)
-
-
