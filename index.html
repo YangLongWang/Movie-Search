@@ -49,13 +49,29 @@
                         </p>
                         <form id="movie-form">
                             <input type="text" placeholder="Movie name here" class="input is-warning" id="search-input">
-                            <button class="button is-responsive is-primary" id="search-btn">Search</button>
+                            <button class="button is-responsive is-primary" id="search-btn"
+                                data-target="alert-modal">Search</button>
+                            <button class="button is-responsive is-warning js-modal-trigger" data-target="filter-modal"
+                                id="filter-btn">Filter</button>
                         </form>
                     </div>
                 </div>
             </section>
         </div>
     </div>
+    <!-- <section class="hero is-info">
+        <div class="hero-body container has-text-centered">
+            <h1 id="page-title" class="title is-1">Movie Search</h1>
+            <p class="subtitle">
+                Search for past, present, and upcoming movie info
+            </p>
+          <form id="movie-form">    
+            <input type="text" placeholder="Movie name here" class="input is-warning" id="search-input">
+            <button class="button is-responsive is-primary" id="search-btn">Search</button>
+            <button class="button is-responsive is-warning js-modal-trigger" id="filter-btn">Filter</button>
+          </form> 
+        </div>
+    </section> -->
 
     <!-- Movie Info -->
     <div class="columns is-gapless" id="movie-info-part">
@@ -166,7 +182,96 @@
         </div>
     </div>
 
+    <!-- Filtering modal start -->
+    <div id="filter-modal" class="modal">
+        <!-- set modal background to cover main site -->
+        <div class="modal-background"></div>
+        <!-- use modal card to display filtering options -->
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Filtering Options</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <p>Please choose your search criteria:</p>
+                <form id="filtering-form">
+                    <div class="columns">
+                        <div class="column">
+                            <input type="checkbox" id="filter-genre" name="genre" class="filter-option" checked>
+                            <label for="filter-genre">Genre</label><br />
+                            <input type="checkbox" id="filter-country" name="country" class="filter-option" checked>
+                            <label for="filter-country">Country</label><br />
+                            <input type="checkbox" id="filter-year" name="year" class="filter-option" checked>
+                            <label for="filter-year">Release Year</label><br />
+                            <input type="checkbox" id="filter-language" name="language" class="filter-option" checked>
+                            <label for="filter-language">Language</label><br />
+                            <input type="checkbox" id="filter-length" name="length" class="filter-option" checked>
+                            <label for="filter-length">Length</label><br />
+                            <input type="checkbox" id="filter-rating" name="rating" class="filter-option" checked>
+                            <label for="filter-rating">Rating</label><br />
+                            <input type="checkbox" id="filter-summary" name="summary" class="filter-option" checked>
+                            <label for="filter-summary">Summary</label><br />
+                            <input type="checkbox" id="filter-director" name="director" class="filter-option" checked>
+                            <label for="filter-director">Director</label><br />
+                            <input type="checkbox" id="filter-cast" name="cast" class="filter-option" checked>
+                            <label for="filter-cast">Cast</label><br />
+                            <input type="checkbox" id="filter-reviews" name="reviews" class="filter-option" checked>
+                            <label for="filter-reviews">Reviews</label><br />
+                            <input type="checkbox" id="filter-trailers" name="trailers" class="filter-option" checked>
+                            <label for="filter-trailers">Trailers</label><br />
+
+                        </div>
+                        <!-- container for streaming services filtering -->
+                        <div class="column">
+                            <input type="checkbox" id="filter-netflix" name="netflix" class="filter-option" checked>
+                            <label for="filter-netflix">Netflix</label><br />
+                            <input type="checkbox" id="filter-crave" name="crave" class="filter-option" checked>
+                            <label for="filter-crave">Crave</label><br />
+                            <input type="checkbox" id="filter-prime" name="prime" class="filter-option" checked>
+                            <label for="filter-prime">Amazon Prime</label><br />
+                            <input type="checkbox" id="filter-hulu" name="hulu" class="filter-option" checked>
+                            <label for="filter-hulu">Hulu</label><br />
+                            <input type="checkbox" id="filter-hbomax" name="hbomax" class="filter-option" checked>
+                            <label for="filter-hbomax">HBO Max</label><br />
+                            <!-- <input type="checkbox" id="filter-theaters" name="theaters" class="filter-option">
+                            <label for="filter-theaters">Theaters Near Me</label> -->
+                        </div>
+                    </div>
+                </form>
+            </section>
+            <footer class="modal-card-foot">
+                <!-- <button class="modal-close is-large" aria-label="close" id="close-modal"></button> -->
+                <button class="button is-success" id="modal-save-btn">Save Preferences</button>
+                <button class="button is-danger" id="modal-cancel-btn">Cancel</button>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Filtering modal end -->
+
+    <!-- empty input field alert modal -->
+    <div class="modal" id="alert-modal">
+        <!-- set modal background to cover main site -->
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Check input</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <p>Input field cannot be blank. Please enter a movie or series name then search again!</p>
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-success">Ok</button>
+            </footer>
+        </div>
+
+    </div>
+
+    <!-- empty input field modal end -->
+
     <script src="./assets/js/logic.js"></script>
+    <!-- <script src="./assets/js/watchapi.js"></script> -->
 </body>
 
 </html>
