@@ -30,69 +30,61 @@ var alertModalEl = document.getElementById("alert-modal");
 // info(184126)
 
 //movie now
+var cards = document.querySelector("#now");
+
+
 window.onload = function () {
-    let apiKey = '627ce180f6b942d38cd09ef7905db024';
-    fetch('https://ipgeolocation.abstractapi.com/v1/?api_key=' + apiKey)
-        .then(response => response.json())
-        .then(data => {
-            console.log((data))
-            country = data.country_code;
-            playingNow(country);
-        });
-}
-var playingNow = function (country) {
+
     var requestOptions = {
         method: 'GET',
         redirect: 'follow'
     };
-    fetch("https://api.themoviedb.org/3/movie/now_playing?api_key=094c84db597deb498f8d90a2474513fe&language=en-US&page=1&region=" + country, requestOptions)
-        .then(function (response) {
-            response.json().then(function (data) {
-                console.log(data);
-                // count: data.results.length
-                for (var i = 0; i < data.results.length; i++) {
-                    // console.log(data.results[i].poster_path);
-                    var backImage = data.results[i].poster_path;
-                    var backtitle = data.results[i].original_title;
 
-                    var movieCardImage = "https://image.tmdb.org/t/p/w500" + backImage;
+    fetch("https://api.themoviedb.org/3/movie/now_playing?api_key=094c84db597deb498f8d90a2474513fe&language=en-US&page=1&region=US", requestOptions).then(function (response) {
+        response.json().then(function (data) {
+            // count: data.results.length
+            for (var i = 0; i < data.results.length; i++) {
+                var backImage = data.results[i].poster_path;
+                var backtitle = data.results[i].original_title;
 
-                    // console.log(movieCardImage);
+                var movieCardImage = "https://image.tmdb.org/t/p/w500" + backImage;
 
-                    var col = document.createElement("div");
-                    col.classList.add("column", "is-narrow", "is-one-fifth");
 
-                    var card = document.createElement("div");
-                    card.classList.add("card");
+                var col = document.createElement("div");
+                col.classList.add("column", "is-narrow", "is-one-fifth");
 
-                    var cardImage = document.createElement("div");
-                    cardImage.classList.add("card-image");
+                var card = document.createElement("div");
+                card.classList.add("card");
 
-                    var moviePoster = document.createElement("figure");
-                    moviePoster.classList.add("image");
+                var cardImage = document.createElement("div");
+                cardImage.classList.add("card-image");
 
-                    var pic = document.createElement("img");
-                    pic.setAttribute("src", movieCardImage);
+                var moviePoster = document.createElement("figure");
+                moviePoster.classList.add("image");
 
-                    var cardContent = document.createElement("div");
-                    cardContent.classList.add("card-content", "has-text-centered");
+                var pic = document.createElement("img");
+                pic.setAttribute("src", movieCardImage);
 
-                    var contentTitle = document.createElement("p");
-                    contentTitle.classList.add("title", "is-5");
-                    contentTitle.textContent = backtitle;
+                var cardContent = document.createElement("div");
+                cardContent.classList.add("card-content", "has-text-centered");
 
-                    cards.appendChild(col);
-                    col.appendChild(card);
-                    card.appendChild(cardImage);
-                    cardImage.appendChild(moviePoster);
-                    moviePoster.appendChild(pic);
-                    card.appendChild(cardContent);
-                    cardContent.appendChild(contentTitle);
+                var contentTitle = document.createElement("p");
+                contentTitle.classList.add("title", "is-5");
+                contentTitle.textContent = backtitle;
 
-                }
-            })
-        }).catch(error => console.log('error', error));
-};
+                cards.appendChild(col);
+                col.appendChild(card);
+                card.appendChild(cardImage);
+                cardImage.appendChild(moviePoster);
+                moviePoster.appendChild(pic);
+                card.appendChild(cardContent);
+                cardContent.appendChild(contentTitle);
+
+            }
+        })
+    }).catch(error => console.log('error', error));
+}
+
 
 //IP adress look up API
 var GetLocation = function (movie) {
@@ -100,7 +92,6 @@ var GetLocation = function (movie) {
     fetch('https://ipgeolocation.abstractapi.com/v1/?api_key=' + apiKey)
         .then(response => response.json())
         .then(data => {
-            console.log((data))
             country = data.country_code;
             passthrough = movie;
             idSearch(passthrough, country);
@@ -119,7 +110,6 @@ var idSearch = function (movie, country) {
     fetch('https://online-movie-database.p.rapidapi.com/title/find?q=' + movie + '', options)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             Id = data.results[0].id.slice(7, 16);
             topTitle = data.results[0].title;
             passthrough = country
@@ -144,7 +134,6 @@ var MovieInfo = function (id) {
     fetch('https://online-movie-database.p.rapidapi.com/title/get-overview-details?tconst=' + id + '&currentCountry=CA', options)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             info = data;
 
             movieInfoEl.innerHTML = data.plotSummary.text;
@@ -187,7 +176,6 @@ var getWatchApi = function (movie, country) {
                 hour = Math.floor(length / 60);
                 minute = length % 60;
                 movieLengthEl.innerHTML = hour + ":" + minute
-                console.log(movieLengthEl);
                 //loop to display cast
                 for (let i = 0; i < data.cast.length; i++) {
                     let li = document.createElement("li");
@@ -195,45 +183,15 @@ var getWatchApi = function (movie, country) {
                     movieCastEl.appendChild(li);
                 }
                 //loop for available streaming platforms
-                for (let i = 0; i < data.streamingInfo.length; i++) {
-                    let li = Document.createElement("li");
-                    li.innerText = data.streamingInfo[i];
+                list = Object.keys(data.streamingInfo)
+                for (let i = 0; i < list.length; i++) {
+                    let li = document.createElement("li");
+                    li.innerHTML = list[i];
                     movieStreamEl.appendChild(li);
                 }
             });
         }
         )
-};
-
-//event handler function
-var movieSearchHandler = function (event) {
-    event.preventDefault();
-    //get value from input element and eliminates extra spaces 
-    var movie = movieInputEl.value.trim();
-    if (movie) {
-        while (movieCastEl.firstChild) {
-            //reset lists from earlier
-            movieCastEl.removeChild(movieCastEl.firstChild);
-        };
-        while (movieWriterEl.firstChild) {
-            //reset lists from earlier
-            movieWriterEl.removeChild(movieWriterEl.firstChild);
-        };
-        while (movieDirectorEl.firstChild) {
-            //reset lists from earlier
-            movieDirectorEl.removeChild(movieDirectorEl.firstChild);
-        };
-        while (movieReviewEl.firstChild) {
-            //reset lists from earlier
-            movieReviewEl.removeChild(movieReviewEl.firstChild);
-        };
-        while (movieGenreEl.firstChild) {
-            //reset lists from earlier
-            movieGenreEl.removeChild(movieGenreEl.firstChild);
-        }
-        GetLocation(movie);
-        movieInputEl.value = "";
-    };
 };
 
 //get trailer info
@@ -269,7 +227,6 @@ var trailerDisplay = function (id) {
     fetch('https://online-movie-database.p.rapidapi.com/title/get-video-playback?viconst=' + id, options)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             movieTrailerEl.setAttribute("type", data.resource.encodings[1].mimeType);
             movieTrailerEl.setAttribute("src", data.resource.encodings[1].playUrl);
         })
@@ -287,7 +244,6 @@ var topCrew = function (id) {
     fetch('https://online-movie-database.p.rapidapi.com/title/get-top-crew?tconst=' + id, options)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             for (i = 0; i < data.directors.length; i++) {
                 let li = document.createElement("li");
                 li.innerHTML = data.directors[i].name;
@@ -311,15 +267,14 @@ var userReviews = function (id) {
         }
     };
 
-    fetch('https://online-movie-database.p.rapidapi.com/title/get-user-reviews?tconst=tt0944947', options)
+    fetch('https://online-movie-database.p.rapidapi.com/title/get-user-reviews?tconst=' + id, options)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             for (let i = 0; i < 5; i++) {
                 let li = document.createElement("li");
                 li.setAttribute("id", "reviewItem");
                 let author = document.createElement("p");
-                author.innerHTML = "Author" + data.reviews[i].author.displayname;
+                author.innerHTML = data.reviews[i].author.displayName;
                 let rating = document.createElement("p");
                 rating.innerHTML = data.reviews[i].authorRating;
                 let title = document.createElement("p");
@@ -337,19 +292,35 @@ var userReviews = function (id) {
 }
 
 //form submit event call
-movieformEl.addEventListener("submit", movieSearchHandler);
 var startSearch = function (event) {
-    // console.log(searchInputEl.value.trim());
     event.preventDefault();
 
     // get input from user and store it in movieTitle
     var movieTitle = searchInputEl.value.trim();
-    // console.log("searching");
 
     // if the user input something -not blank- call APIs
     if (movieTitle) {
-        // call functions to fetch from APIs based on movieTitle
-        // else alert user to input something
+        while (movieCastEl.firstChild) {
+            //reset lists from earlier
+            movieCastEl.removeChild(movieCastEl.firstChild);
+        };
+        while (movieWriterEl.firstChild) {
+            //reset lists from earlier
+            movieWriterEl.removeChild(movieWriterEl.firstChild);
+        };
+        while (movieDirectorEl.firstChild) {
+            //reset lists from earlier
+            movieDirectorEl.removeChild(movieDirectorEl.firstChild);
+        };
+        while (movieReviewEl.firstChild) {
+            //reset lists from earlier
+            movieReviewEl.removeChild(movieReviewEl.firstChild);
+        };
+        while (movieGenreEl.firstChild) {
+            //reset lists from earlier
+            movieGenreEl.removeChild(movieGenreEl.firstChild);
+        }
+        GetLocation(movieTitle);
     } else {
         // start alert modal
         alertModalEl.classList.add("is-active");
@@ -358,31 +329,13 @@ var startSearch = function (event) {
 };
 
 var callModal = function (event) {
-    // console.log("filtering");
     filterModalEl.classList.add("is-active");
     pageEl.classList.add("is-clipped");
 
 };
 
-// var inputHandler = function(event) {
-//     event.preventDefault();
-//     // console.log(event.target.id);
-//     var inputId = event.target.id;
-
-//     if (inputId === "search-btn") {
-//         // console.log("searching");
-//         startSearch();
-//     // } else if (inputId === "filter-btn") {
-//     //     // console.log("filtering");
-//     //     callModal();
-//     }
-
-// };
-
-
 var loadPreferences = function () {
     preferences = JSON.parse(localStorage.getItem("search-preference"));
-    // console.log(preferences);
 
     if (!preferences) {
         preferences = {};
@@ -392,15 +345,12 @@ var loadPreferences = function () {
     var cbPreferenceArr = document.querySelectorAll(".filter-option");
 
     for (var i = 0; i < cbPreferenceArr.length; i++) {
-        // console.log(cbPreferenceArr[i].getAttribute("name"));
         if (preferences[cbPreferenceArr[i].getAttribute("name")] === true) {
-            // console.log(cbPreferenceArr[i]);
             cbPreferenceArr[i].checked = true;
         } else {
             cbPreferenceArr[i].checked = false;
         }
     }
-
 };
 
 var savePreferences = function () {
@@ -413,22 +363,14 @@ var savePreferences = function () {
         // in loop, retrieve name and status
         var preferenceName = cbPreferenceArr[i].getAttribute("name");
         var preferenceState = cbPreferenceArr[i].checked;
-        // console.log(preferenceName, preferenceState);
         // push to preference object
         preferences[preferenceName] = preferenceState;
     }
-    // console.log(preferences);
     // save to local storage
     localStorage.setItem("search-preference", JSON.stringify(preferences));
 };
 
-// disabling for now
-//formEl.addEventListener("click", inputHandler);
-
-searchBtnEl.addEventListener("click", startSearch);
-
 // modalCloseBtn.addEventListener("click", closeModal);
-
 document.addEventListener('DOMContentLoaded', () => {
     // Functions to open and close a modal
     function openModal($el) {
@@ -467,7 +409,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         $close.addEventListener('click', (event) => {
             if (event.target.id === "modal-save-btn") {
-                // console.log("saving");
                 savePreferences();
             }
             closeModal($target);
@@ -483,6 +424,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+//formEl.addEventListener("click", inputHandler);
+searchBtnEl.addEventListener("click", startSearch);
 
 // load from localStorage
 loadPreferences();
