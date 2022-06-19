@@ -11,6 +11,7 @@ var alertModalEl = document.getElementById("alert-modal");
 
 var startSearch = function(event) {
     // console.log(searchInputEl.value.trim());
+    event.preventDefault();
 
     // get input from user and store it in movieTitle
     var movieTitle = searchInputEl.value.trim();
@@ -57,6 +58,7 @@ var loadPreferences = function() {
 
     if (!preferences) {
         preferences = {};
+        savePreferences();
     }
     var cbPreferenceArr = document.querySelectorAll(".filter-option");
 
@@ -89,8 +91,10 @@ var savePreferences = function() {
     // save to local storage
     localStorage.setItem("search-preference", JSON.stringify(preferences));
 };
+// disabling for now
+//formEl.addEventListener("click", inputHandler);
 
-formEl.addEventListener("click", inputHandler);
+searchBtnEl.addEventListener("click", startSearch);
 
 // modalCloseBtn.addEventListener("click", closeModal);
 
@@ -121,6 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const $target = document.getElementById(modal);
   
       $trigger.addEventListener('click', () => {
+        event.preventDefault();
           openModal($target);
       });
     });
