@@ -37,8 +37,6 @@
 
 ## Features
 
-(To be completed once all project features ready)
-
 ### Homepage
 
 - Now showing movies: The homepage on load displays a list of now playing movies with their title and movie poster. On clicking one of the now playing movies a search is triggered and more detailed information about that title is presented to the user. 
@@ -51,6 +49,13 @@
 
 ### Search 
 
+- Movie Information: Movie title, list of genres, IMDB score, release date, language, duration, and rating are provided on the top of the movie information section. A movie synopsis, list of directors, writers, cast and movie poster are provided to the user if this information is selected to be included by the user. 
+
+- Trailer: The ability to watch a trailer on the page is provided. 
+
+- IMDB reviews: A limited selection of reviews from the IMDB website can be displayed on the page if the user wishes to see this information. These reviews also contiain the username of the reviewer, and the score they gave the movie. 
+
+- Where to watch : Where the movie is avaliable to watch is provided in this section. A list of streamining services which link to their respective pages is provided. 
 
 
 
