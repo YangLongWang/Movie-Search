@@ -25,6 +25,8 @@
 
  - (TBA)
 
+ - 
+
  What make your project stand out? (MAYBE?)
 
  - (TBA) 
@@ -36,6 +38,18 @@
 ## Features
 
 (To be completed once all project features ready)
+
+### Homepage
+
+- Now showing movies: The homepage on load displays a list of now playing movies with their title and movie poster. On clicking one of the now playing movies a search is triggered and more detailed information about that title is presented to the user. 
+
+- Search filter: Searches can be customized, detailed information such as: genre, release year, synopsis, cast, and reviews, etc. are provided. The ability to display a watchable trailer, and a list of streamining services to check for avaliability is also provided as an option. 
+
+- Quick navigation tabs: The homepage has three tabs: home, movie, and contact us. These tabs allow the user to quickly navigate to their desired section of the site without having to scroll to reach it. 
+
+- Contact us section: The page's footer holds links to the project collaborators GitHub pages. GitHub profile icons were used in this section. 
+
+### Search 
 
 
 
@@ -49,6 +63,7 @@
 
 ## Live Site Images
 
-(Add screenshots of functionality)
+![Home page](./assets/images/live%20site%20homepage.png)
+
 
 
