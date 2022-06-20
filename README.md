@@ -35,7 +35,7 @@ Using GitHub for projects
 
 - Creating / Using issues feature: The issues section acts like a message board within a repository. It allows comments to be made for specefic issues and for team members to be assigned or self-assigned specefic issues. The tags are useful for clarity on what an iussue is partaining to, and in general is a convient way for team members to see areas of a project that need to be worked on in conjunction with the kanban board.  
  
-- Working in branches:  
+- Working in branches: A develop branch was created and branches were created for feature development. Once a feature was ready to be pushed, a pull request was made to be merged with the devlop branch. Once testing was passed on the develop branch, then it was merged with the main branch. This insured that the main branch remained intact and avoided time loss in having to revert back to a previous build. Working in seperate branched also had the benefit of allowing us to be able to merge specefic changes in a controlled setting.  
  
  What make your project stand out? (MAYBE?)
 
