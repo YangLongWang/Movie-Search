@@ -109,8 +109,24 @@ var movieNow = function (country) {
                 }
             })
         }
-    }).catch(error => alert("error"));
+        // call modal here
+    // }).catch(error => alert("error"));
+    }).catch(function() {
+        // call alert modal
+        console.log("here");
+        var alertHeaderEl = document.getElementById("alert-modal-header");
+        var alertTextEl = document.getElementById("alert-modal-text");
+        
+        alertHeaderEl.textContent = "Error";
+        alertTextEl.textContent = "Movie or show not found. Please enter another movie or series name then search again!";
+        alertModalEl.classList.add("is-active");
+        pageEl.classList.add("is-clipped");
+    });
 }
+
+
+
+
 
 //IP adress look up API
 var GetLocation = function (movie) {
@@ -147,7 +163,15 @@ var idSearch = function (movie, country) {
                 userReviews(Id)
                 getWatchApi(Id, passthrough);
             } else {
-                alert("no good")
+                // call alert modal
+                var alertHeaderEl = document.getElementById("alert-modal-header");
+                var alertTextEl = document.getElementById("alert-modal-text");
+        
+                alertHeaderEl.textContent = "Error";
+                alertTextEl.textContent = "Movie or show not found. Please enter another movie or series name then search again!";
+                alertModalEl.classList.add("is-active");
+                pageEl.classList.add("is-clipped");
+                // alert("no good")
             }
         })
 };
@@ -241,7 +265,17 @@ var trailer = function (id) {
         .then(data => {
             videoId = data.resource.videos[0].id.slice(9);
             trailerDisplay(videoId);
-        }).catch(err => console.error(err));
+        }).catch(function() {
+            // call alert modal
+            var alertHeaderEl = document.getElementById("alert-modal-header");
+            var alertTextEl = document.getElementById("alert-modal-text");
+    
+            alertHeaderEl.textContent = "Error";
+            alertTextEl.textContent = "Trailer not available!";
+            alertModalEl.classList.add("is-active");
+            pageEl.classList.add("is-clipped");
+        });
+    // }).catch(err => console.error(err));
 };
 
 //display trailer on page
@@ -319,7 +353,17 @@ var userReviews = function (id) {
                 movieReviewEl.appendChild(li);
             }
         })
-        .catch(err => console.error(err));
+        .catch(function() {
+            // call alert modal
+            var alertHeaderEl = document.getElementById("alert-modal-header");
+            var alertTextEl = document.getElementById("alert-modal-text");
+    
+            alertHeaderEl.textContent = "Error";
+            alertTextEl.textContent = "User reviews not found!";
+            alertModalEl.classList.add("is-active");
+            pageEl.classList.add("is-clipped");
+        });
+        // .catch(err => console.error(err));
 }
 
 var displayInfo = function () {
@@ -380,6 +424,11 @@ var startSearch = function (event) {
         displayInfo();
     } else {
         // start alert modal
+        var alertHeaderEl = document.getElementById("alert-modal-header");
+        var alertTextEl = document.getElementById("alert-modal-text");
+
+        alertHeaderEl.textContent = "Check input";
+        alertTextEl.textContent = "Input field cannot be blank. Please enter a movie or series name then search again!";
         alertModalEl.classList.add("is-active");
         pageEl.classList.add("is-clipped");
     }
