@@ -322,7 +322,7 @@ var userReviews = function (id) {
         .catch(err => console.error(err));
 }
 
-var displayInfo = function() {
+var displayInfo = function () {
     // retrieve each object key name to use to query the html id's
     var arr = Object.keys(preferences);
 
@@ -336,7 +336,7 @@ var displayInfo = function() {
         // if the key value is true, remove class "is-hidden" so it's shown on the page
         if (preferences[arr[i]] === true) {
             targetEl.classList.remove("is-hidden");
-        // else, add class "is-hidden" to hide from page
+            // else, add class "is-hidden" to hide from page
         } else {
             targetEl.classList.add("is-hidden");
         }
