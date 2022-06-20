@@ -44,70 +44,72 @@ var movieNow = function (country) {
     };
 
     fetch("https://api.themoviedb.org/3/movie/now_playing?api_key=094c84db597deb498f8d90a2474513fe&language=en-US&page=1&region=" + country, requestOptions).then(function (response) {
-        response.json().then(function (data) {
-            for (var i = 0; i < data.results.length; i++) {
-                var backImage = data.results[i].poster_path;
-                var backtitle = data.results[i].title;
-                var cards = document.querySelector("#now");
+        if (response.ok) {
+            response.json().then(function (data) {
+                for (var i = 0; i < data.results.length; i++) {
+                    var backImage = data.results[i].poster_path;
+                    var backtitle = data.results[i].title;
+                    var cards = document.querySelector("#now");
 
-                var movieCardImage = "https://image.tmdb.org/t/p/w500" + backImage;
+                    var movieCardImage = "https://image.tmdb.org/t/p/w500" + backImage;
 
-                var col = document.createElement("div");
-                col.classList.add("column", "is-narrow", "is-one-fifth");
+                    var col = document.createElement("div");
+                    col.classList.add("column", "is-narrow", "is-one-fifth");
 
-                var card = document.createElement("div");
-                card.classList.add("card");
-                card.addEventListener("click", function () {
-                    while (movieCastEl.firstChild) {
-                        //reset lists from earlier
-                        movieCastEl.removeChild(movieCastEl.firstChild);
-                    };
-                    while (movieWriterEl.firstChild) {
-                        //reset lists from earlier
-                        movieWriterEl.removeChild(movieWriterEl.firstChild);
-                    };
-                    while (movieDirectorEl.firstChild) {
-                        //reset lists from earlier
-                        movieDirectorEl.removeChild(movieDirectorEl.firstChild);
-                    };
-                    while (movieReviewEl.firstChild) {
-                        //reset lists from earlier
-                        movieReviewEl.removeChild(movieReviewEl.firstChild);
-                    };
-                    while (movieGenreEl.firstChild) {
-                        //reset lists from earlier
-                        movieGenreEl.removeChild(movieGenreEl.firstChild);
-                    }
-                    GetLocation(backtitle);
-                })
+                    var card = document.createElement("div");
+                    card.classList.add("card");
+                    card.addEventListener("click", function () {
+                        while (movieCastEl.firstChild) {
+                            //reset lists from earlier
+                            movieCastEl.removeChild(movieCastEl.firstChild);
+                        };
+                        while (movieWriterEl.firstChild) {
+                            //reset lists from earlier
+                            movieWriterEl.removeChild(movieWriterEl.firstChild);
+                        };
+                        while (movieDirectorEl.firstChild) {
+                            //reset lists from earlier
+                            movieDirectorEl.removeChild(movieDirectorEl.firstChild);
+                        };
+                        while (movieReviewEl.firstChild) {
+                            //reset lists from earlier
+                            movieReviewEl.removeChild(movieReviewEl.firstChild);
+                        };
+                        while (movieGenreEl.firstChild) {
+                            //reset lists from earlier
+                            movieGenreEl.removeChild(movieGenreEl.firstChild);
+                        }
+                        GetLocation(backtitle);
+                    })
 
-                var cardImage = document.createElement("div");
-                cardImage.classList.add("card-image");
+                    var cardImage = document.createElement("div");
+                    cardImage.classList.add("card-image");
 
-                var moviePoster = document.createElement("figure");
-                moviePoster.classList.add("image");
+                    var moviePoster = document.createElement("figure");
+                    moviePoster.classList.add("image");
 
-                var pic = document.createElement("img");
-                pic.setAttribute("src", movieCardImage);
+                    var pic = document.createElement("img");
+                    pic.setAttribute("src", movieCardImage);
 
-                var cardContent = document.createElement("div");
-                cardContent.classList.add("card-content", "has-text-centered");
+                    var cardContent = document.createElement("div");
+                    cardContent.classList.add("card-content", "has-text-centered");
 
-                var contentTitle = document.createElement("p");
-                contentTitle.classList.add("title", "is-5");
-                contentTitle.textContent = backtitle;
+                    var contentTitle = document.createElement("p");
+                    contentTitle.classList.add("title", "is-5");
+                    contentTitle.textContent = backtitle;
 
-                cards.appendChild(col);
-                col.appendChild(card);
-                card.appendChild(cardImage);
-                cardImage.appendChild(moviePoster);
-                moviePoster.appendChild(pic);
-                card.appendChild(cardContent);
-                cardContent.appendChild(contentTitle);
+                    cards.appendChild(col);
+                    col.appendChild(card);
+                    card.appendChild(cardImage);
+                    cardImage.appendChild(moviePoster);
+                    moviePoster.appendChild(pic);
+                    card.appendChild(cardContent);
+                    cardContent.appendChild(contentTitle);
 
-            }
-        })
-    }).catch(error => console.log('error', error));
+                }
+            })
+        }
+    }).catch(error => alert("error"));
 }
 
 //IP adress look up API
@@ -134,14 +136,19 @@ var idSearch = function (movie, country) {
     fetch('https://online-movie-database.p.rapidapi.com/title/find?q=' + movie + '', options)
         .then(response => response.json())
         .then(data => {
-            Id = data.results[0].id.slice(7, 16);
-            topTitle = data.results[0].title;
-            passthrough = country
-            MovieInfo(Id);
-            trailer(Id);
-            topCrew(Id);
-            userReviews(Id)
-            getWatchApi(Id, passthrough);
+            console.log(data);
+            if (data.results) {
+                Id = data.results[0].id.slice(7, 16);
+                topTitle = data.results[0].title;
+                passthrough = country
+                MovieInfo(Id);
+                trailer(Id);
+                topCrew(Id);
+                userReviews(Id)
+                getWatchApi(Id, passthrough);
+            } else {
+                alert("no good")
+            }
         })
 };
 
@@ -269,7 +276,7 @@ var topCrew = function (id) {
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            for (i = 0; i < 3; i++) {
+            for (i = 0; i < data.directors.length; i++) {
                 let li = document.createElement("li");
                 li.innerHTML = data.directors[i].name;
                 movieDirectorEl.appendChild(li);
@@ -280,7 +287,6 @@ var topCrew = function (id) {
                 movieWriterEl.appendChild(li);
             }
         })
-        .catch(err => console.error(err));
 }
 
 var userReviews = function (id) {
