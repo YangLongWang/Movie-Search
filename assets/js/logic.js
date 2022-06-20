@@ -109,6 +109,7 @@ var movieNow = function (country) {
                 }
             })
         }
+        // call modal here
     }).catch(error => alert("error"));
 }
 
@@ -147,7 +148,15 @@ var idSearch = function (movie, country) {
                 userReviews(Id)
                 getWatchApi(Id, passthrough);
             } else {
-                alert("no good")
+                // call alert modal
+                var alertHeaderEl = document.getElementById("alert-modal-header");
+                var alertTextEl = document.getElementById("alert-modal-text");
+        
+                alertHeaderEl.textContent = "Error";
+                alertTextEl.textContent = "Movie or show not found. Please enter another movie or series name then search again!";
+                alertModalEl.classList.add("is-active");
+                pageEl.classList.add("is-clipped");
+                // alert("no good")
             }
         })
 };
@@ -381,6 +390,11 @@ var startSearch = function (event) {
         displayInfo();
     } else {
         // start alert modal
+        var alertHeaderEl = document.getElementById("alert-modal-header");
+        var alertTextEl = document.getElementById("alert-modal-text");
+
+        alertHeaderEl.textContent = "Check input";
+        alertTextEl.textContent = "Input field cannot be blank. Please enter a movie or series name then search again!";
         alertModalEl.classList.add("is-active");
         pageEl.classList.add("is-clipped");
     }
