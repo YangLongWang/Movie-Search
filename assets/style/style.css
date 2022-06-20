@@ -13,3 +13,51 @@ body {
 .GitImg img {
     max-height: 80px !important;
 }
+
+#movie_title {
+    text-align: center !important;
+    font-size: 300%;
+}
+
+nav div .heading {
+    font-size: 100%;
+    font-weight: 700;
+    font-size: 100%;
+}
+
+.title {
+    font-weight: 300;
+    font-size: 150%;
+}
+
+#genre {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+#genre li {
+    margin: auto;
+    padding-left: 10px;
+}
+
+li {
+    margin: auto 5px auto 2px;
+}
+
+#history {
+    margin-top: 1%;
+    text-align: center;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#history li {
+    background-color: rgb(38, 106, 253) !important;
+    margin: auto;
+    padding: 6px;
+    border-radius: 7px;
+}

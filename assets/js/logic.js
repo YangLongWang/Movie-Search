@@ -175,7 +175,7 @@ var MovieInfo = function (id) {
 
             for (i = 0; i < data.genres.length; i++) {
                 let li = document.createElement("li");
-                li.innerHTML = data.genres[i];
+                li.innerHTML = data.genres[i] + ", ";
                 movieGenreEl.appendChild(li);
             }
         })
@@ -210,7 +210,7 @@ var getWatchApi = function (movie, country) {
                 //loop to display cast
                 for (let i = 0; i < 5; i++) {
                     let li = document.createElement("li");
-                    li.innerText = data.cast[i];
+                    li.innerText = data.cast[i] + ", ";
                     movieCastEl.appendChild(li);
                 }
                 //loop for available streaming platforms
@@ -278,12 +278,12 @@ var topCrew = function (id) {
             console.log(data);
             for (i = 0; i < data.directors.length; i++) {
                 let li = document.createElement("li");
-                li.innerHTML = data.directors[i].name;
+                li.innerHTML = data.directors[i].name + ", ";
                 movieDirectorEl.appendChild(li);
             };
             for (let i = 0; i < data.writers.length; i++) {
                 let li = document.createElement("li");
-                li.innerHTML = data.writers[i].name;
+                li.innerHTML = data.writers[i].name + ", ";
                 movieWriterEl.appendChild(li);
             }
         })
