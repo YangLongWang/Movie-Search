@@ -326,7 +326,6 @@ var displayInfo = function () {
     // retrieve each object key name to use to query the html id's
     var arr = Object.keys(preferences);
 
-
     // loop through each key
     for (var i = 0; i < arr.length; i++) {
         // get the key name
