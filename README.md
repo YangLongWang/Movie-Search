@@ -31,9 +31,11 @@ Workflow
 
 Using GitHub for projects 
 
-- 
+- Kanban board: The kanban board acts similiar to creating psuedo code in that both create an outline of what needs to be done on a work. The kanban board is a convient way for groups to manage and check what work needs to be done, and who is assigned to the task. Creating and making use of this feature on GitHub, in the projects tab, allowed for a convient central location to manage the progress of the project and allowed members to make additions for emerging work tasks. Making use of this feature proved to be an organizanizational asset to the project and implemting its use for solo works would be a benefit as it is easy to use and allows for clear organization of workflow.   
 
+- Creating / Using issues feature: The issues section acts like a message board within a repository. It allows comments to be made for specefic issues and for team members to be assigned or self-assigned specefic issues. The tags are useful for clarity on what an iussue is partaining to, and in general is a convient way for team members to see areas of a project that need to be worked on in conjunction with the kanban board.  
  
+- Working in branches:  
  
  What make your project stand out? (MAYBE?)
 
