@@ -274,9 +274,7 @@ var topCrew = function (id) {
                 li.innerHTML = data.directors[i].name;
                 movieDirectorEl.appendChild(li);
             };
-
-
-            for (let i = 0; i < 3; i++) {
+            for (let i = 0; i < data.writers.length; i++) {
                 let li = document.createElement("li");
                 li.innerHTML = data.writers[i].name;
                 movieWriterEl.appendChild(li);
