@@ -37,11 +37,6 @@ Using GitHub for projects
  
 - Working in branches: A develop branch was created and branches were created for feature development. Once a feature was ready to be pushed, a pull request was made to be merged with the devlop branch. Once testing was passed on the develop branch, then it was merged with the main branch. This insured that the main branch remained intact and avoided time loss in having to revert back to a previous build. Working in seperate branched also had the benefit of allowing us to be able to merge specefic changes in a controlled setting.  
  
- What make your project stand out? (MAYBE?)
-
- - (TBA) 
- 
-
 
 ## User Story
 - As a movie lover, I want to be able to look up information about a movie and be provided with key information about that title and its availability. 
@@ -75,8 +70,13 @@ Using GitHub for projects
 
 ## Initial Design Concept 
 
+Once the idea for the project was agreed upon, a initial wireframe was created so development could begin on the project. This wireframe included a design for a simple user interface that included a search bar and two sections for information about a searched movie title: 
 
 ![Wireframe](/assets/images/wireframe.png)
+
+As the project progressed and styling was beginning devlopment, a more refined layout for the information section was created to act as a template for the projects styling. This layout included the placement of the movie information and movie poster: 
+
+
 ![Updated Wireframe](./assets/images/movie%20info.PNG)
 
 
