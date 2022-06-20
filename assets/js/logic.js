@@ -291,6 +291,28 @@ var userReviews = function (id) {
         .catch(err => console.error(err));
 }
 
+var displayInfo = function() {
+    // retrieve each object key name to use to query the html id's
+    var arr = Object.keys(preferences);
+
+
+    // loop through each key
+    for (var i = 0; i < arr.length; i++) {
+        // get the key name
+        var preferenceName = arr[i];
+        // using the key name as id, query the target element to show/hide
+        var targetEl = document.getElementById(preferenceName);
+        // if the key value is true, remove class "is-hidden" so it's shown on the page
+        if (preferences[arr[i]] === true) {
+            targetEl.classList.remove("is-hidden");
+        // else, add class "is-hidden" to hide from page
+        } else {
+            targetEl.classList.add("is-hidden");
+        }
+    }
+
+}
+
 //form submit event call
 var startSearch = function (event) {
     event.preventDefault();
@@ -321,6 +343,8 @@ var startSearch = function (event) {
             movieGenreEl.removeChild(movieGenreEl.firstChild);
         }
         GetLocation(movieTitle);
+        // call function to hide/show elements
+        displayInfo();
     } else {
         // start alert modal
         alertModalEl.classList.add("is-active");
@@ -376,6 +400,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function openModal($el) {
         $el.classList.add('is-active');
         loadPreferences();
+        pageEl.classList.add("is-clipped");
     }
 
     function closeModal($el) {
@@ -430,3 +455,4 @@ searchBtnEl.addEventListener("click", startSearch);
 
 // load from localStorage
 loadPreferences();
+//displayInfo();
