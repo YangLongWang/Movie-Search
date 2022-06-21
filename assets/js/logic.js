@@ -46,7 +46,7 @@ var movieNow = function (country) {
     fetch("https://api.themoviedb.org/3/movie/now_playing?api_key=094c84db597deb498f8d90a2474513fe&language=en-US&page=1&region=" + country, requestOptions).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                for (var i = 0; i < data.results.length; i++) {
+                for (var i = 0; i < 10; i++) {
                     var backImage = data.results[i].poster_path;
                     var backtitle = data.results[i].title;
                     var cards = document.querySelector("#now");
@@ -86,7 +86,7 @@ var movieNow = function (country) {
                     cardImage.classList.add("card-image");
 
                     var moviePoster = document.createElement("figure");
-                    moviePoster.classList.add("image");
+                    moviePoster.classList.add("image", "is-48x96");
 
                     var pic = document.createElement("img");
                     pic.setAttribute("src", movieCardImage);
@@ -95,7 +95,7 @@ var movieNow = function (country) {
                     cardContent.classList.add("card-content", "has-text-centered");
 
                     var contentTitle = document.createElement("p");
-                    contentTitle.classList.add("title", "is-5");
+                    contentTitle.classList.add("subtitle", "is-size-6");
                     contentTitle.textContent = backtitle;
 
                     cards.appendChild(col);
@@ -199,7 +199,7 @@ var MovieInfo = function (id) {
 
             for (i = 0; i < data.genres.length; i++) {
                 let li = document.createElement("li");
-                li.innerHTML = data.genres[i] + ", ";
+                li.innerHTML = data.genres[i];
                 movieGenreEl.appendChild(li);
             }
         })
@@ -230,7 +230,7 @@ var getWatchApi = function (movie, country) {
                 length = data.runtime;
                 hour = Math.floor(length / 60);
                 minute = length % 60;
-                movieLengthEl.innerHTML = hour + ":" + minute
+                movieLengthEl.innerHTML = hour + ":" + minute + ":00";
                 //loop to display cast
                 for (let i = 0; i < 5; i++) {
                     let li = document.createElement("li");
@@ -335,7 +335,7 @@ var userReviews = function (id) {
     fetch('https://online-movie-database.p.rapidapi.com/title/get-user-reviews?tconst=' + id, options)
         .then(response => response.json())
         .then(data => {
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < 3; i++) {
                 let li = document.createElement("li");
                 li.setAttribute("id", "reviewItem");
                 let author = document.createElement("p");
