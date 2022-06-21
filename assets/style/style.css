@@ -47,12 +47,13 @@ li {
 }
 
 #history {
-    margin-top: 1%;
+    margin: 20px auto;
     text-align: center;
     list-style: none;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    width: 50%;
 }
 
 #history li {

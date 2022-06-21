@@ -10,7 +10,7 @@
     <!--Bulma link-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma-rtl.min.css">
     <link rel="stylesheet" href="./assets/style/style.css">
-    <title>Temporary</title>
+    <title>Movie Search</title>
 </head>
 
 <body>
@@ -68,14 +68,14 @@
         <div class="column">
             <section class="section content p-2">
                 <h2 class="title">Now Showing Movies</h2>
-                <div class="columns is-multiline is-centered has-background-primary" id="now"></div>
+                <div class="columns is-multiline is-centered has-background-primary is-tablet" id="now"></div>
             </section>
         </div>
     </div>
 
     <!-- Movie Info -->
     <div class="columns is-gapless" id="movie-info-part">
-        <div class="column is-three-fifths has-background-primary">
+        <div class="column is-four-fifths has-background-primary">
             <section id="info">
                 <section id="primary_info" class="section content py-2 pb-2">
                     <h2 id="movie_title">Movie Title</h2>
@@ -85,37 +85,37 @@
                                 <div class="level-item has-text-centered">
                                     <div>
                                         <p class="heading">Genres</p>
-                                        <ol id="genre" class="title"></ol>
+                                        <ol id="genre" class="subtitle"></ol>
                                     </div>
                                 </div>
                                 <div class="level-item has-text-centered">
                                     <div>
                                         <p class="heading">Score</p>
-                                        <p id="star" class="title"></p>
+                                        <p id="star" class="subtitle"></p>
                                     </div>
                                 </div>
                                 <div class="level-item has-text-centered">
                                     <div>
                                         <p class="heading">Release Date</p>
-                                        <p id="date" class="title"></p>
+                                        <p id="date" class="subtitle"></p>
                                     </div>
                                 </div>
                                 <div class="level-item has-text-centered">
                                     <div>
-                                        <p class="heading">Original Language</p>
-                                        <p id="language" class="title"></p>
+                                        <p class="heading">Language</p>
+                                        <p id="language" class="subtitle"></p>
                                     </div>
                                 </div>
                                 <div class="level-item has-text-centered">
                                     <div>
-                                        <p class="heading">Movie Length</p>
-                                        <p id="length" class="title"></p>
+                                        <p class="heading">Length</p>
+                                        <p id="length" class="subtitle"></p>
                                     </div>
                                 </div>
                                 <div class="level-item has-text-centered">
                                     <div>
                                         <p class="heading">Rating</p>
-                                        <p id="rating" class="title"></p>
+                                        <p id="rating" class="subtitle"></p>
                                     </div>
                                 </div>
                             </nav>
@@ -123,37 +123,41 @@
                     </div>
 
                     <div class="columns">
-                        <div class="column is-two-fifths">
-                            <img id="poster" alt="movie poster">
+                        <div class="column is-one-quarter has-text-centered">
+                            <img id="poster" alt="">
                         </div>
                         <div class="column">
-                            <p><strong>Synopsis: </strong><span>
-                                    <ol id="synopsis"></ol>
-                                </span></p>
-                            <p><strong>Director: </strong><span>
-                                    <ol id="director"></ol>
-                                </span></p>
-                            <p><strong>Writers: </strong><span>
-                                    <ol id="writers"></ol>
-                                </span></p>
-                            <p><strong>Cast: </strong><span>
-                                    <ol id="cast"></ol>
-                                </span></p>
+                            <section class="section content py-2 pb-2">
+                                <p><strong>Synopsis: </strong><span>
+                                        <ol id="synopsis"></ol>
+                                    </span></p>
+                                <p><strong>Director: </strong><span>
+                                        <ol id="director"></ol>
+                                    </span></p>
+                                <p><strong>Writers: </strong><span>
+                                        <ol id="writers"></ol>
+                                    </span></p>
+                                <p><strong>Cast: </strong><span>
+                                        <ol id="cast"></ol>
+                                    </span></p>
+                            </section>
                         </div>
                     </div>
                 </section>
                 <div id="secondary_info" class="section content py-2 pb-2">
                     <video id="trailer" controls></video>
-                    <ul id="review_list">
-                    </ul>
+                    <section class="section content py-2 pb-2">
+                        <ul id="review_list"></ul>
+                    </section>
                 </div>
             </section>
         </div>
 
         <div class="column has-background-info">
-            <section id="watch" class="section">
-                <div id="stream">
-                    <h2>Where to watch</h2>
+            <section id="watch" class="section content">
+                <h2 class="subtitle is-size-4">Where to watch</h2>
+                <div id="stream" class="content">
+
                     <ol id="stream_list">
                     </ol>
                 </div>
@@ -161,6 +165,7 @@
         </div>
     </div>
 
+    <!--Contact us section-->
     <div class="columns is-gapless has-background-info" id="contact-part">
         <div class="column">
             <section class="is-flex section content p-2">
@@ -249,11 +254,11 @@
         <div class="modal-background"></div>
         <div class="modal-card">
             <header class="modal-card-head">
-                <p class="modal-card-title">Check input</p>
+                <p class="modal-card-title" id="alert-modal-header"></p>
                 <button class="delete" aria-label="close"></button>
             </header>
             <section class="modal-card-body">
-                <p>Input field cannot be blank. Please enter a movie or series name then search again!</p>
+                <p id="alert-modal-text"></p>
             </section>
             <footer class="modal-card-foot">
                 <button class="button is-success">Ok</button>
@@ -263,6 +268,7 @@
     </div>
 
     <!-- empty input field modal end -->
+
 
     <script src="./assets/js/logic.js"></script>
     <!-- <script src="./assets/js/watchapi.js"></script> -->
