@@ -41,6 +41,13 @@ Using GitHub for projects
 ## User Story
 - As a movie lover, I want to be able to look up information about a movie and be provided with key information about that title and its availability. 
 
+## Technology 
+
+- Server-side APIs
+- Vanilla JS
+- Bulma 
+- Modal
+- Local Storage
 
 ## Features
 
@@ -84,6 +91,10 @@ As the project progressed and styling was beginning devlopment, a more refined l
 ## Live Site Images
 
 ![Home page](./assets/images/live%20site%20homepage.png)
+
+![Movie Info](./assets/images/live%20site%20movie%20info.png)
+
+![Movie Reviews and contact us section](./assets/images/live%20site%20reviews.png)
 
 
 
