@@ -1,9 +1,9 @@
 # Movie Search Project README
 
 ## Links
-- GitHub Repository: 
+- GitHub Repository: https://github.com/EnzoTragnone/Movie-Search
 
-- Live page: 
+- Live page: https://enzotragnone.github.io/Movie-Search/
 
 ## Contributers 
 - This was a group project collaberation:
