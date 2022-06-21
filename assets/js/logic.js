@@ -80,8 +80,12 @@ var movieNow = function (country) {
                         while (movieGenreEl.firstChild) {
                             //reset lists from earlier
                             movieGenreEl.removeChild(movieGenreEl.firstChild);
+                        };
+                        while (movieStreamEl.firstChild) {
+                            movieStreamEl.removeChild(movieStreamEl.firstChild);
                         }
-                        GetLocation(backtitle);
+                        title = this.textContent;
+                        GetLocation(title);
                     })
 
                     var cardImage = document.createElement("div");
@@ -155,6 +159,44 @@ var idSearch = function (movie, country) {
                 Id = data.results[0].id.slice(7, 16);
                 topTitle = data.results[0].title;
                 passthrough = country
+
+                //adds history
+                if (document.getElementById(topTitle)) {
+                } else {
+                    let li = document.createElement("li");
+                    li.innerHTML = topTitle;
+                    li.setAttribute("class", "item");
+                    li.setAttribute("id", topTitle);
+                    li.addEventListener("click", function () {
+                        while (movieCastEl.firstChild) {
+                            //reset lists from earlier
+                            movieCastEl.removeChild(movieCastEl.firstChild);
+                        };
+                        while (movieWriterEl.firstChild) {
+                            //reset lists from earlier
+                            movieWriterEl.removeChild(movieWriterEl.firstChild);
+                        };
+                        while (movieDirectorEl.firstChild) {
+                            //reset lists from earlier
+                            movieDirectorEl.removeChild(movieDirectorEl.firstChild);
+                        };
+                        while (movieReviewEl.firstChild) {
+                            //reset lists from earlier
+                            movieReviewEl.removeChild(movieReviewEl.firstChild);
+                        };
+                        while (movieGenreEl.firstChild) {
+                            //reset lists from earlier
+                            movieGenreEl.removeChild(movieGenreEl.firstChild);
+                        };
+                        while (movieStreamEl.firstChild) {
+                            movieStreamEl.removeChild(movieStreamEl.firstChild);
+                        }
+                        title = this.textContent;
+                        GetLocation(title);
+                    })
+                    historyEl.appendChild(li);
+                }
+
                 MovieInfo(Id);
                 trailer(Id);
                 topCrew(Id);
@@ -188,7 +230,9 @@ var MovieInfo = function (id) {
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            movieInfoEl.innerHTML = data.plotSummary.text;
+            if (data.plotSummary) {
+                movieInfoEl.innerHTML = data.plotSummary.text;
+            } else { movieInfoEl.innerHTML = data.plotOutline.text }
             movieDateEl.innerHTML = data.releaseDate;
             moviePosterEl.setAttribute("src", data.title.image.url)
             movieStarEl.innerHTML = data.ratings.rating;
@@ -245,12 +289,6 @@ var getWatchApi = function (movie, country) {
                     li.innerHTML = list[i];
                     movieStreamEl.appendChild(li);
                 }
-                //adds history
-                let li = document.createElement("li");
-                li.innerHTML = data.title;
-                li.setAttribute("id", "item");
-                historyEl.appendChild(li);
-
             });
         }
         )
