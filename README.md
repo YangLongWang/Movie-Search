@@ -1,5 +1,15 @@
 # Movie Search Project README
+## Table of contents
 
+- [Overview](#overview)
+  - [Links](#links)
+  - [Contributers](#contributers)
+  - [Introduction](#introduction)
+  - [User Story](#user-story)
+- [Our process](#our-process)
+  - [Technology](#technology)
+  - [What I learned](#what-i-learned)
+- [Author](#author)
 ## Links
 - GitHub Repository: https://github.com/EnzoTragnone/Movie-Search
 
@@ -8,7 +18,7 @@
 ## Contributers 
 - This was a group project collaberation:
 - Enzo Tragnone (GitHub link: https://github.com/EnzoTragnone)
-- YangLong Wang (GitHub link: https://github.com/YangLongWang)
+- Longyang Wang (GitHub link: https://github.com/YangLongWang)
 - Omar Rodriguez (GitHub link: https://github.com/nickless192)
 - Daniel Rubino (GitHub link: https://github.com/RubinoD1)
 
