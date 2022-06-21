@@ -6,10 +6,12 @@
   - [Contributers](#contributers)
   - [Introduction](#introduction)
   - [User Story](#user-story)
-- [Our process](#our-process)
   - [Technology](#technology)
-  - [What I learned](#what-i-learned)
-- [Author](#author)
+- [Features](#features)
+  - [Homepage](#homepage)
+  - [Search](#search)
+- [Initial Design Concept](#initial-design-concept)
+- [Screenshot](#screenshot)
 ## Links
 - GitHub Repository: https://github.com/EnzoTragnone/Movie-Search
 
@@ -98,7 +100,7 @@ As the project progressed and styling was beginning devlopment, a more refined l
 
 
 
-## Live Site Images
+## Screenshot
 
 ![Home page](./assets/images/live%20site%20homepage.png)
 
