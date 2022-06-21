@@ -20,6 +20,7 @@ var movieStarEl = document.querySelector("#star");
 var searchBtnEl = document.getElementById("search-btn");
 var searchInputEl = document.getElementById("search-input");
 var filterBtnEl = document.getElementById("filter-btn");
+var historyEl = document.querySelector("#history");
 var formEl = document.getElementById("movie-form");
 var filterModalEl = document.getElementById("filter-modal");
 var modalCloseBtn = document.getElementById("modal-cancel-btn");
@@ -37,6 +38,7 @@ window.onload = function () {
             movieNow(country);
         });
 };
+
 var movieNow = function (country) {
     var requestOptions = {
         method: 'GET',
@@ -110,23 +112,19 @@ var movieNow = function (country) {
             })
         }
         // call modal here
-    // }).catch(error => alert("error"));
-    }).catch(function() {
+        // }).catch(error => alert("error"));
+    }).catch(function () {
         // call alert modal
         console.log("here");
         var alertHeaderEl = document.getElementById("alert-modal-header");
         var alertTextEl = document.getElementById("alert-modal-text");
-        
+
         alertHeaderEl.textContent = "Error";
         alertTextEl.textContent = "Movie or show not found. Please enter another movie or series name then search again!";
         alertModalEl.classList.add("is-active");
         pageEl.classList.add("is-clipped");
     });
 }
-
-
-
-
 
 //IP adress look up API
 var GetLocation = function (movie) {
@@ -166,7 +164,7 @@ var idSearch = function (movie, country) {
                 // call alert modal
                 var alertHeaderEl = document.getElementById("alert-modal-header");
                 var alertTextEl = document.getElementById("alert-modal-text");
-        
+
                 alertHeaderEl.textContent = "Error";
                 alertTextEl.textContent = "Movie or show not found. Please enter another movie or series name then search again!";
                 alertModalEl.classList.add("is-active");
@@ -189,17 +187,16 @@ var MovieInfo = function (id) {
     fetch('https://online-movie-database.p.rapidapi.com/title/get-overview-details?tconst=' + id + '&currentCountry=CA', options)
         .then(response => response.json())
         .then(data => {
-            info = data;
-
+            console.log(data);
             movieInfoEl.innerHTML = data.plotSummary.text;
             movieDateEl.innerHTML = data.releaseDate;
             moviePosterEl.setAttribute("src", data.title.image.url)
             movieStarEl.innerHTML = data.ratings.rating;
             movieRatingEl.innerHTML = data.certificates.US[0].certificate;
 
-            for (i = 0; i < data.genres.length; i++) {
+            for (i = 0; i < data.genres.length || data < 5; i++) {
                 let li = document.createElement("li");
-                li.innerHTML = data.genres[i];
+                li.innerHTML = data.genres[i] + ", ";
                 movieGenreEl.appendChild(li);
             }
         })
@@ -224,15 +221,19 @@ var getWatchApi = function (movie, country) {
             response.json().then(function (data) {
                 //data format and display
                 console.log(data);
-                movieTerm = data;
+                if (data.runtime) {
+                    length = data.runtime;
+                    hour = Math.floor(length / 60);
+                    minute = length % 60;
+                    movieLengthEl.innerHTML = hour + ":" + minute + "hrs"
+                } if (data.episodes) {
+                    movieLengthEl.innerHTML = data.episodes + "ep"
+                }
+
                 movieTitleEl.innerHTML = data.title;
                 movieLanguageEl.innerHTML = data.originalLanguage;
-                length = data.runtime;
-                hour = Math.floor(length / 60);
-                minute = length % 60;
-                movieLengthEl.innerHTML = hour + ":" + minute + ":00";
                 //loop to display cast
-                for (let i = 0; i < 5; i++) {
+                for (let i = 0; i < data.cast.length && i < 5; i++) {
                     let li = document.createElement("li");
                     li.innerText = data.cast[i] + ", ";
                     movieCastEl.appendChild(li);
@@ -244,6 +245,12 @@ var getWatchApi = function (movie, country) {
                     li.innerHTML = list[i];
                     movieStreamEl.appendChild(li);
                 }
+                //adds history
+                let li = document.createElement("li");
+                li.innerHTML = data.title;
+                li.setAttribute("id", "item");
+                historyEl.appendChild(li);
+
             });
         }
         )
@@ -265,11 +272,11 @@ var trailer = function (id) {
         .then(data => {
             videoId = data.resource.videos[0].id.slice(9);
             trailerDisplay(videoId);
-        }).catch(function() {
+        }).catch(function () {
             // call alert modal
             var alertHeaderEl = document.getElementById("alert-modal-header");
             var alertTextEl = document.getElementById("alert-modal-text");
-    
+
             alertHeaderEl.textContent = "Error";
             alertTextEl.textContent = "Trailer not available!";
             alertModalEl.classList.add("is-active");
@@ -310,12 +317,12 @@ var topCrew = function (id) {
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            for (i = 0; i < data.directors.length; i++) {
+            for (i = 0; i < data.directors.length && i < 5; i++) {
                 let li = document.createElement("li");
                 li.innerHTML = data.directors[i].name + ", ";
                 movieDirectorEl.appendChild(li);
             };
-            for (let i = 0; i < data.writers.length; i++) {
+            for (let i = 0; i < data.writers.length && i < 5; i++) {
                 let li = document.createElement("li");
                 li.innerHTML = data.writers[i].name + ", ";
                 movieWriterEl.appendChild(li);
@@ -353,17 +360,17 @@ var userReviews = function (id) {
                 movieReviewEl.appendChild(li);
             }
         })
-        .catch(function() {
+        .catch(function () {
             // call alert modal
             var alertHeaderEl = document.getElementById("alert-modal-header");
             var alertTextEl = document.getElementById("alert-modal-text");
-    
+
             alertHeaderEl.textContent = "Error";
             alertTextEl.textContent = "User reviews not found!";
             alertModalEl.classList.add("is-active");
             pageEl.classList.add("is-clipped");
         });
-        // .catch(err => console.error(err));
+    // .catch(err => console.error(err));
 }
 
 var displayInfo = function () {
