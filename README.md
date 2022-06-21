@@ -63,7 +63,7 @@ Using GitHub for projects
 
 - IMDB reviews: A limited selection of reviews from the IMDB website can be displayed on the page if the user wishes to see this information. These reviews also contiain the username of the reviewer, and the score they gave the movie. 
 
-- Where to watch : Where the movie is avaliable to watch is provided in this section. A list of streamining services which link to their respective pages is provided. 
+- Where to watch : Where the movie is avaliable to watch is provided in this section. A list of streaming services which link to their respective pages is provided. 
 
 
 
