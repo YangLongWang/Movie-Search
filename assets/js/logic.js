@@ -27,6 +27,8 @@ var modalCloseBtn = document.getElementById("modal-cancel-btn");
 var pageEl = document.querySelector("html");
 var preferences = {};
 var alertModalEl = document.getElementById("alert-modal");
+// movieArr save history record
+var movieArr = [];
 
 //now playing 
 window.onload = function () {
@@ -195,6 +197,11 @@ var idSearch = function (movie, country) {
                         GetLocation(title);
                     })
                     historyEl.appendChild(li);
+                    // put movie name in movieArr
+                    movieArr.push(topTitle);
+                    // console.log(movieArr);
+                    // put movieArr in localstorage 
+                    localStorage.setItem("movies", JSON.stringify(movieArr));
                 }
 
                 MovieInfo(Id);
@@ -577,9 +584,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+function loadhistory() {
+    var load = localStorage.getItem("movies");
+
+    if (!load) {
+        return false;
+    }
+
+    load = JSON.parse(load);
+
+    for (var i=0; i<load.length; i++) {
+
+        idSearch(load[i]);
+    }
+}
+
 //formEl.addEventListener("click", inputHandler);
 searchBtnEl.addEventListener("click", startSearch);
 
 // load from localStorage
 loadPreferences();
+loadhistory();
 //displayInfo();
