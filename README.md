@@ -15,11 +15,11 @@
 ## Introduction 
  Why did you build this project?
 
-- The idea behiend the project was to provide a central location where movie/tv show information and avaliability could be attained by the user. 
+- The idea behind the project was to provide a central location where movie/tv show information and availability  could be attained by the user. 
 
  What problem does it solve?
 
-- The site eliminates the need to make extra searches for streaming avaliability, trailers, movie info, and now playing information for theatres. 
+- The site eliminates the need to make extra searches for streaming availability, trailers, movie info, and now playing information for theatres. 
 
  What did you learn?
 
