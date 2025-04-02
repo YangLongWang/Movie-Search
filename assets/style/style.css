@@ -1,3 +1,46 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     background-color: antiquewhite;
+
+}
+
+/* index.html */
+.now-showing-part,
+.more-movies-part {
+    background-color: red;
+    margin: 20px;
+    padding: 20px;
+}
+
+.showing-container,
+.movies-container {
+    background-color: black;
+    padding: 30px;
+    margin: 25px 0 25px 0;
+}
+
+.figure {
+    background-color: green;
+    padding: 0 30px 0 30px;
+    margin: 0 20px 0 20px;
+}
+
+.img-fluid {
+    width: 150px;
+    height: 250px;
+}
+
+/* movie_info.html */
+.movie-info {
+    background-color: red;
+    margin: 40px 80px;
+    padding: 20px;
+}
+
+.info {
+    background-color: green;
+    margin-top: 30px;
 }
