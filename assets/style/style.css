@@ -33,6 +33,76 @@ body {
     height: 250px;
 }
 
+/* scroll */
+.scroll {
+    /* display: flex; */
+    /* width: 1000px; */
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, #fff 20%, #fff 80%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #fff 20%, #fff 80%, transparent);
+}
+
+.img-box img {
+    max-width: 150px;
+    filter: grayscale(1);
+    cursor: pointer;
+    transition: filter 0.5s;
+}
+
+.img-box img:hover {
+    filter: grayscale(0);
+}
+
+.scroll>div {
+    white-space: nowrap;
+    animation: animate var(--t) linear infinite;
+    animation-delay: calc(var(--t) * -1);
+}
+
+@keyframes animate {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* .scroll>div:nth-child(2) {
+    animation: animate2 var(--t) linear infinite;
+    animation-delay: calc(var(--t) / -2);
+} */
+
+/* @keyframes animate2 {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-200%);
+    }
+} */
+
+.scroll:hover>div {
+    animation-play-state: paused;
+}
+
+@media screen and (max-width: 768px) {
+    .scroll {
+        width: 90vw;
+    }
+
+    .scroll>div span {
+        background-color: #4caf50;
+    }
+
+    .img-box img {
+        width: 33vw;
+        filter: grayscale(0);
+    }
+}
+
 /* movie_info.html */
 .movie-info {
     background-color: red;

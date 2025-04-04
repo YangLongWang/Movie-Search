@@ -33,31 +33,33 @@
                 <div class="col-12">
                     <input type="text" class="form-conrol form-control-lg" placeholder="Movie Name Here"
                         aria-label=".form-control-lg">
-                    <button class="button">Search</button>
+                    <button class="button" type="submit" id="search">Search</button>
                 </div>
             </form>
         </section>
 
         <!-- now showing movies -->
         <section class="now-showing-part">
-            <h2 class="">Now Showing Movies</h2>
-            <div class="showing-container text-center">
-                <figure class="figure">
-                    <img src="./assets/images/Enzo.png" class="figure-img img-fluid rounded" alt="Movie Poster">
-                    <figcaption class="figure-caption">Lorem, ipsum dolor.</figcaption>
-                </figure>
-                <figure class="figure">
-                    <img src="./assets/images/Enzo.png" class="figure-img img-fluid rounded" alt="Movie Poster">
-                    <figcaption class="figure-caption">Lorem, ipsum dolor.</figcaption>
-                </figure>
-                <figure class="figure">
-                    <img src="./assets/images/Enzo.png" class="figure-img img-fluid rounded" alt="Movie Poster">
-                    <figcaption class="figure-caption">Lorem, ipsum dolor.</figcaption>
-                </figure>
-                <figure class="figure">
-                    <img src="./assets/images/Enzo.png" class="figure-img img-fluid rounded" alt="Movie Poster">
-                    <figcaption class="figure-caption">Lorem, ipsum dolor.</figcaption>
-                </figure>
+            <h2 class="">Now Showing Movies <span id="now-showing-date">()</span></h2>
+            <div class="showing-container text-center scroll img-box" style="--t:25s">
+                <div id="loadImg">
+                    <!-- <figure class="figure">
+                        <img src="./assets/images/Enzo.png" class="figure-img img-fluid rounded" alt="Movie Poster">
+                        <figcaption class="figure-caption">Lorem, ipsum dolor.</figcaption>
+                    </figure>
+                    <figure class="figure">
+                        <img src="./assets/images/Enzo.png" class="figure-img img-fluid rounded" alt="Movie Poster">
+                        <figcaption class="figure-caption">Lorem, ipsum dolor.</figcaption>
+                    </figure>
+                    <figure class="figure">
+                        <img src="./assets/images/Enzo.png" class="figure-img img-fluid rounded" alt="Movie Poster">
+                        <figcaption class="figure-caption">Lorem, ipsum dolor.</figcaption>
+                    </figure>
+                    <figure class="figure">
+                        <img src="./assets/images/Enzo.png" class="figure-img img-fluid rounded" alt="Movie Poster">
+                        <figcaption class="figure-caption">Lorem, ipsum dolor.</figcaption>
+                    </figure> -->
+                </div>
             </div>
         </section>
 
