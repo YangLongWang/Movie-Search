@@ -13,6 +13,7 @@ body {
     background-color: red;
     margin: 20px;
     padding: 20px;
+    /* visibility: hidden; */
 }
 
 .showing-container,
@@ -31,6 +32,10 @@ body {
 .img-fluid {
     width: 150px;
     height: 250px;
+}
+
+.figure {
+    cursor: pointer;
 }
 
 /* scroll */
@@ -103,14 +108,28 @@ body {
     }
 }
 
-/* movie_info.html */
+/* movie_info*/
 .movie-info {
     background-color: red;
     margin: 40px 80px;
     padding: 20px;
 }
 
+.movie-info .row {
+    margin-top: 30px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
 .info {
     background-color: green;
     margin-top: 30px;
+}
+
+.synopsis {
+    white-space: pre-line;
+}
+
+.figure-big {
+    margin-top: 20px;
 }

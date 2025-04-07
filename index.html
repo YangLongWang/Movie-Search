@@ -15,12 +15,12 @@
 </head>
 
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid" id="container">
         <!-- Navigation -->
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item active" aria-current="page"><a href="./index.html">Home</a></li>
-                <li class="breadcrumb-item"><a href="./movie_info.html">Movie</a></li>
+                <li class="breadcrumb-item"><a href="">Movie</a></li>
                 <li class="breadcrumb-item"><a href="#">Contact Us</a></li>
             </ol>
         </nav>
@@ -32,8 +32,8 @@
             <form action="#" class="row g-2 movie-form">
                 <div class="col-12">
                     <input type="text" class="form-conrol form-control-lg" placeholder="Movie Name Here"
-                        aria-label=".form-control-lg">
-                    <button class="button" type="submit" id="search">Search</button>
+                        aria-label=".form-control-lg" value="" id="searchText" required>
+                    <button class="button" type="submit" id="searchButton">Search</button>
                 </div>
             </form>
         </section>
@@ -63,49 +63,56 @@
             </div>
         </section>
 
-        <!-- More Movies -->
+        <!-- More Movies/Top Rated -->
         <section class="more-movies-part">
-            <h2 class="">More Movies</h2>
-            <div class="movies-container text-center">
-                <figure class="figure">
+            <h2 class="">Top Rated</h2>
+            <div class="movies-container text-center" id="top-rated">
+                <!-- <figure class="figure">
                     <img src="./assets/images/Enzo.png" class="figure-img img-fluid rounded" alt="Movie Poster">
                     <figcaption class="figure-caption">Lorem, ipsum dolor.</figcaption>
-                </figure>
-                <figure class="figure">
-                    <img src="./assets/images/Enzo.png" class="figure-img img-fluid rounded" alt="Movie Poster">
-                    <figcaption class="figure-caption">Lorem, ipsum dolor.</figcaption>
-                </figure>
-                <figure class="figure">
-                    <img src="./assets/images/Enzo.png" class="figure-img img-fluid rounded" alt="Movie Poster">
-                    <figcaption class="figure-caption">Lorem, ipsum dolor.</figcaption>
-                </figure>
-                <figure class="figure">
-                    <img src="./assets/images/Enzo.png" class="figure-img img-fluid rounded" alt="Movie Poster">
-                    <figcaption class="figure-caption">Lorem, ipsum dolor.</figcaption>
-                </figure>
+                </figure> -->
             </div>
         </section>
 
+        <!-- Movie Info -->
+        <!-- <div class="movie-info">
+            <h2 class="text-center" id="Title">Movie's Title</h2>
+            <div class="row">
+                <div class="col-8 info">
+                    <p><strong>Synopsis: <span id="synopsis"></span></strong></p>
+                </div>
+
+                <aside class="col-4 text-center">
+                    <figure class="figure-big">
+                        <img id="movie-poster" src="./assets/images/Enzo.png" class="figure-img img-fluid rounded"
+                            alt="Movie Poster">
+                    </figure>
+                    <p class="">Genres: <span id="genres"></span></p>
+                    <p class="">Score: <span id="score"></span></p>
+                    <p class="">Release Date: <span id="releaseDate"></span></p>
+                    <p class="">Language: <span id="language"></span></p>
+                </aside>
+            </div>
+        </div> -->
+
         <!--Contact Us -->
-        <div class="">
-            <section class="">
-                <h2>Contact Us</h2>
-                <ul class="">
-                    <a class="GitImg" href="https://github.com/EnzoTragnone">
-                        <img src="./assets/images/Enzo.png" alt="Enzo Tragnone" style="height: 40px;">
-                    </a>
-                    <a class="GitImg" href="https://github.com/RubinoD1">
-                        <img src="./assets/images/Daniel.png" alt="Daniel Rubino" style="height: 40px;">
-                    </a>
-                    <a class="GitImg" href="https://github.com/nickless192">
-                        <img src="./assets/images/Omar.png" alt="Omar Rodriguez" style="height: 40px;">
-                    </a>
-                    <a class="GitImg" href="https://github.com/YangLongWang">
-                        <img src="./assets/images/Wang.png" alt="Longyang Wang" style="height: 40px;">
-                    </a>
-                </ul>
-            </section>
-        </div>
+        <section class="contactUs">
+            <h2>Contact Us</h2>
+            <ul class="">
+                <a class="GitImg" href="https://github.com/EnzoTragnone">
+                    <img src="./assets/images/Enzo.png" alt="Enzo Tragnone" style="height: 40px;">
+                </a>
+                <a class="GitImg" href="https://github.com/RubinoD1">
+                    <img src="./assets/images/Daniel.png" alt="Daniel Rubino" style="height: 40px;">
+                </a>
+                <a class="GitImg" href="https://github.com/nickless192">
+                    <img src="./assets/images/Omar.png" alt="Omar Rodriguez" style="height: 40px;">
+                </a>
+                <a class="GitImg" href="https://github.com/YangLongWang">
+                    <img src="./assets/images/Wang.png" alt="Longyang Wang" style="height: 40px;">
+                </a>
+            </ul>
+        </section>
     </div>
 
     <script src="./assets/js/logic.js"></script>
