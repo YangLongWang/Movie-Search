@@ -1,5 +1,7 @@
 * {
     box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+    /* 暂时使用字体 */
 }
 
 body {
@@ -31,7 +33,7 @@ body {
 
 .img-fluid {
     width: 150px;
-    height: 250px;
+    /* height: 250px; */
 }
 
 .figure {
@@ -39,6 +41,7 @@ body {
 }
 
 /* scroll */
+/* 需要调整速度和显示 */
 .scroll {
     /* display: flex; */
     /* width: 1000px; */
@@ -108,7 +111,9 @@ body {
     }
 }
 
-/* movie_info*/
+/* movie_info */
+/* 颜色需要调整 */
+/* 没有图片的电影 海报位置需要统一width/hight 不一定 最后在看 */
 .movie-info {
     background-color: red;
     margin: 40px 80px;
