@@ -1,34 +1,32 @@
 * {
     box-sizing: border-box;
     font-family: 'Times New Roman', Times, serif;
-    /* 暂时使用字体 */
 }
 
 body {
     background-color: antiquewhite;
-
 }
 
-/* index.html */
 .now-showing-part,
 .more-movies-part {
-    background-color: red;
+    /* background-color: red; */
     margin: 20px;
     padding: 20px;
-    /* visibility: hidden; */
 }
 
 .showing-container,
 .movies-container {
-    background-color: black;
+    /* background-color: black; */
+    background-color: #fff;
     padding: 30px;
     margin: 25px 0 25px 0;
+    border: 1px solid #fff;
+    border-radius: 10px;
 }
 
-.figure {
-    background-color: green;
-    padding: 0 30px 0 30px;
-    margin: 0 20px 0 20px;
+#loadImg .figure {
+    /* background-color: green; */
+    margin: 0 15px;
 }
 
 .img-fluid {
@@ -41,10 +39,9 @@ body {
 }
 
 /* scroll */
-/* 需要调整速度和显示 */
 .scroll {
-    /* display: flex; */
-    /* width: 1000px; */
+    display: flex;
+    width: 100%;
     overflow: hidden;
     mask-image: linear-gradient(90deg, transparent, #fff 20%, #fff 80%, transparent);
     -webkit-mask-image: linear-gradient(90deg, transparent, #fff 20%, #fff 80%, transparent);
@@ -52,8 +49,7 @@ body {
 
 .img-box img {
     max-width: 150px;
-    filter: grayscale(1);
-    cursor: pointer;
+    filter: grayscale(.8);
     transition: filter 0.5s;
 }
 
@@ -65,11 +61,12 @@ body {
     white-space: nowrap;
     animation: animate var(--t) linear infinite;
     animation-delay: calc(var(--t) * -1);
+    /* animation-delay: -2s; */
 }
 
 @keyframes animate {
     0% {
-        transform: translateX(100%);
+        transform: translateX(30%);
     }
 
     100% {
@@ -77,47 +74,17 @@ body {
     }
 }
 
-/* .scroll>div:nth-child(2) {
-    animation: animate2 var(--t) linear infinite;
-    animation-delay: calc(var(--t) / -2);
-} */
-
-/* @keyframes animate2 {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-200%);
-    }
-} */
-
 .scroll:hover>div {
     animation-play-state: paused;
-}
-
-@media screen and (max-width: 768px) {
-    .scroll {
-        width: 90vw;
-    }
-
-    .scroll>div span {
-        background-color: #4caf50;
-    }
-
-    .img-box img {
-        width: 33vw;
-        filter: grayscale(0);
-    }
 }
 
 /* movie_info */
 /* 颜色需要调整 */
 /* 没有图片的电影 海报位置需要统一width/hight 不一定 最后在看 */
 .movie-info {
-    background-color: red;
-    margin: 40px 80px;
-    padding: 20px;
+    /* background-color: red; */
+    margin: 3px 100px;
+    padding: 13px;
 }
 
 .movie-info .row {
@@ -127,14 +94,21 @@ body {
 }
 
 .info {
-    background-color: green;
+    /* background-color: green; */
     margin-top: 30px;
 }
 
 .synopsis {
     white-space: pre-line;
+    margin-top: 20px;
+    margin-left: 30px;
+    font-weight: bold;
 }
 
 .figure-big {
     margin-top: 20px;
+}
+
+.figure-caption {
+    font-weight: bold;
 }

@@ -1,6 +1,3 @@
-// API Read Access Token:eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwOTRjODRkYjU5N2RlYjQ5OGY4ZDkwYTI0NzQ1MTNmZSIsIm5iZiI6MTY1NTU4MDU1Mi44MzgsInN1YiI6IjYyYWUyNzg4YTZhNGMxMDBmMGFhYWNkYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.srm6rQi95Et7kAUp69oL7NFBB8ornMEwyab1kqgSdD4
-// let APIKey = '094c84db597deb498f8d90a2474513fe';
-
 //variables declaration
 const nowShowingDate = document.getElementById("now-showing-date");
 const loadImg = document.getElementById("loadImg");
@@ -10,10 +7,7 @@ const nowShowingPart = document.getElementById('now-showing-part');
 const moreMoviesPart = document.getElementById('more-movies-part');
 const movies = document.getElementById('movies');
 const contactUs = document.getElementById('contactUs');
-
-
-// const Poster_Name = document.querySelector("#top-rated");
-
+const searchText = document.getElementById("searchText");
 
 const options = {
     method: 'GET',
@@ -28,17 +22,19 @@ fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', op
     .then(res => res.json())
     .then(data => {
         if (data.dates) {
-            nowShowingDate.innerHTML = '(' + data.dates.minimum + '~' + data.dates.maximum + ')';
+            nowShowingDate.innerHTML = '(' + data.dates.minimum + ' ~ ' + data.dates.maximum + ')';
         }
         if (data.results) {
             let movieArr = data.results;
             for (let i = 0; i < movieArr.length; i++) {
+                let movieId = movieArr[i].id;
                 let poster = movieArr[i].poster_path;
                 let title = movieArr[i].title;
                 let posterPath = 'https://media.themoviedb.org/t/p/w440_and_h660_face' + poster;
                 // <figure class='figure'>
                 let figurecontainer = document.createElement('figure');
                 figurecontainer.setAttribute('class', 'figure');
+                figurecontainer.setAttribute('id', movieId);
                 loadImg.appendChild(figurecontainer);
                 // <img src=posterPath class='figure-img img-fluid rounded' alt='movie poster>
                 let imgcontainer = document.createElement('img');
@@ -63,14 +59,20 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
     .then(data => {
         if (data.results) {
             let movieArr = data.results;
+            // class->row row-cols-2 row-cols-lg-5 g-2 g-lg-3
+            let topRow = document.createElement('div');
+            topRow.classList.add('row', 'row-cols-2', 'row-cols-lg-5', 'g-2', 'g-lg-3', 'justify-content-between');
+            topRated.appendChild(topRow);
             for (let i = 0; i < movieArr.length; i++) {
+                let movieId = movieArr[i].id;
                 let poster = movieArr[i].poster_path;
                 let title = movieArr[i].original_title;
                 let posterPath = 'https://media.themoviedb.org/t/p/w440_and_h660_face' + poster;
                 // <figure class='figure'>
                 let figurecontainer = document.createElement('figure');
                 figurecontainer.setAttribute('class', 'figure');
-                topRated.appendChild(figurecontainer);
+                figurecontainer.setAttribute('id', movieId);
+                topRow.appendChild(figurecontainer);
                 // <img src=posterPath class='figure-img img-fluid rounded' alt='movie poster>
                 let imgcontainer = document.createElement('img');
                 imgcontainer.setAttribute('class', 'figure-img img-fluid rounded');
@@ -84,47 +86,32 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
                 figtext.appendChild(figcontent);
                 figurecontainer.appendChild(figtext);
             }
-            // let Poster_Name = document.getElementsByClassName("figure");
-            // Poster_Name.addEventListener("click", clickPoster);
         }
     })
     .catch(err => console.error(err));
 
-// click one movie poster
-// 点击海报或电影名可以显示该电影信息 需要完成
+// click movie poster
 function clickPoster(event) {
     event.preventDefault();
 
-    console.log(event.target)
-    if (event.target) {
-        const title1 = event.target["alt"];
-        const title2 = event.target.innerHTML;
-        console.log(title1)
-        console.log(title2)
-    }
-}
-
-// search/movie (more)
-function searchFunction(event) {
-    event.preventDefault();
-
-    let searchText = document.getElementById("searchText").value;
-    fetch('https://api.themoviedb.org/3/search/movie?query=' + searchText + '&include_adult=false&language=en-US&page=1', options)
-        .then(res => res.json())
-        .then(data => {
-            if (data.results) {
-                let movieArr = data.results;
-                for (let i = 0; i < movieArr.length; i++) {
+    if (event.target.parentElement.tagName === 'FIGURE') {
+        // console.log(event.target.parentElement);
+        let movieId = event.target.parentElement['id'];
+        // searchFunction(title);
+        fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=en-US`, options)
+            .then(res => res.json())
+            .then(data => {
+                if (data) {
+                    let movieDetails = data;
                     // div->class="movie-info"
                     let movieInfo = document.createElement("div");
                     movieInfo.classList.add('movie-info');
                     movies.appendChild(movieInfo);
-                    // h2->class="text-center"
-                    let title = document.createElement('h2');
-                    title.classList.add('text-center');
-                    title.innerHTML = movieArr[i].original_title;
-                    // title.setAttribute('class', 'text-center');
-                    movieInfo.appendChild(title);
+                    // // h2->class="text-center"
+                    // let title = document.createElement('h2');
+                    // title.classList.add('text-center');
+                    // title.innerHTML = movieDetails.original_title;
+                    // movieInfo.appendChild(title);
                     // div->class="row"
                     let movieRow = document.createElement("div");
                     movieRow.classList.add('row');
@@ -133,10 +120,85 @@ function searchFunction(event) {
                     let info = document.createElement('div');
                     info.classList.add('col-8', 'info');
                     movieRow.appendChild(info);
+                    // h2->class="text-center"
+                    let title = document.createElement('h2');
+                    title.classList.add('text-center');
+                    title.innerHTML = movieDetails.original_title;
+                    info.appendChild(title);
                     // p strong-> 
                     let synopsis = document.createElement('p');
                     synopsis.classList.add('synopsis')
-                    synopsis.innerHTML = "Synopsis: \n" + movieArr[i].overview;
+                    synopsis.innerHTML = `Synopsis: \n ${movieDetails.overview}`;
+                    info.appendChild(synopsis);
+                    // aside->class="col-4 text-center"
+                    let aside = document.createElement('aside');
+                    aside.classList.add("col-4", "text-center");
+                    movieRow.appendChild(aside);
+                    // figure->class="figure-big"
+                    let figureBig = document.createElement('figure');
+                    figureBig.classList.add('figure-big');
+                    aside.appendChild(figureBig);
+                    // img->class="figure-img img-fluid rounded" src="" alt=""
+                    let posterPath = 'https://image.tmdb.org/t/p/original/' + movieDetails.poster_path;
+                    let moviePoster = document.createElement('img');
+                    moviePoster.classList.add('figure-img', 'img-fluid', 'rounded');
+                    moviePoster.setAttribute('alt', movieDetails.title);
+                    moviePoster.setAttribute('src', posterPath);
+                    figureBig.appendChild(moviePoster);
+                    // p->language class="" 
+                    let language = document.createElement('p');
+                    language.innerHTML = "Language: " + movieDetails.original_language
+                    aside.appendChild(language);
+                    // p->score class=""  
+                    let score = document.createElement('p');
+                    score.innerHTML = "Score: " + movieDetails.vote_average;
+                    aside.appendChild(score);
+                    // p->release date class=""  
+                    let releaseDate = document.createElement('p');
+                    releaseDate.innerHTML = "Release Date: " + movieDetails.release_date;
+                    aside.appendChild(releaseDate);
+
+                }
+            })
+            .catch(err => console.error(err));
+    }
+}
+
+
+// search/movie (more)
+function searchFunction(event) {
+    event.preventDefault();
+    let textValue = searchText.value;
+    // let searchText = document.getElementById("searchText").value;
+    fetch(`https://api.themoviedb.org/3/search/movie?query=${textValue}&include_adult=false&language=en-US&page=1`, options)
+        // fetch('https://api.themoviedb.org/3/search/keyword?query=' + textValue + '&page=1', options)
+        .then(res => res.json())
+        .then(data => {
+            if (data.results) {
+                // console.log(data.results)
+                let movieArr = data.results;
+                for (let i = 0; i < movieArr.length; i++) {
+                    // div->class="movie-info"
+                    let movieInfo = document.createElement("div");
+                    movieInfo.classList.add('movie-info');
+                    movies.appendChild(movieInfo);
+                    // div->class="row"
+                    let movieRow = document.createElement("div");
+                    movieRow.classList.add('row');
+                    movieInfo.appendChild(movieRow);
+                    // div->class="col-8 info"
+                    let info = document.createElement('div');
+                    info.classList.add('col-8', 'info');
+                    movieRow.appendChild(info);
+                    // h2->class="text-center"
+                    let title = document.createElement('h2');
+                    title.classList.add('text-center');
+                    title.innerHTML = movieArr[i].original_title;
+                    info.appendChild(title);
+                    // p strong->class="synopsis"
+                    let synopsis = document.createElement('p');
+                    synopsis.classList.add('synopsis')
+                    synopsis.innerHTML = `Synopsis: \n ${movieArr[i].overview}`;
                     info.appendChild(synopsis);
                     // aside->class="col-4 text-center"
                     let aside = document.createElement('aside');
@@ -184,4 +246,8 @@ function cleanFunction() {
 
 searchButton.addEventListener('click', searchFunction);
 searchButton.addEventListener('click', cleanFunction);
-
+nowShowingPart.addEventListener("click", clickPoster);
+nowShowingPart.addEventListener("click", cleanFunction);
+moreMoviesPart.addEventListener("click", clickPoster);
+moreMoviesPart.addEventListener("click", cleanFunction); //
+// 点击图片时再删除部分
