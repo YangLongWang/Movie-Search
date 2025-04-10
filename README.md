@@ -12,9 +12,9 @@
   - [Search](#search)
 - [Screenshot](#screenshot)
 ## Links
-- GitHub Repository: https://github.com/EnzoTragnone/Movie-Search
+- GitHub Repository: https://github.com/YangLongWang/Movie-Search
 
-- Live page: https://enzotragnone.github.io/Movie-Search/
+- Live page: https://yanglongwang.github.io/Movie-Search/
 
 ## Contributers 
 - This was a group project collaberation:
@@ -77,13 +77,13 @@ Using GitHub for projects
 
 ## Screenshot
 
-![Home page](./assets/images/Movie Search 1.png)
+![Home page](./assets/images/Movie%20Search%201.png)
 
-![Movie Info](./assets/images/Movie Search 2.png)
+![Movie Info](./assets/images/Movie%20Search%202.png)
 
-![Movie Info](./assets/images/Movie Search 3.png)
+![Movie Info](./assets/images/Movie%20Search%203.png)
 
-![Movie Info](./assets/images/Movie Search 4.png)
+![Movie Info](./assets/images/Movie%20Search%204.png)
 
 
 
