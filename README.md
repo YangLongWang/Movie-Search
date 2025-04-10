@@ -10,7 +10,6 @@
 - [Features](#features)
   - [Homepage](#homepage)
   - [Search](#search)
-- [Initial Design Concept](#initial-design-concept)
 - [Screenshot](#screenshot)
 ## Links
 - GitHub Repository: https://github.com/EnzoTragnone/Movie-Search
@@ -55,19 +54,15 @@ Using GitHub for projects
 
 ## Technology 
 
+- Html, Js, Css
+- Bootstrap
 - Server-side APIs
-- Vanilla JS
-- Bulma 
-- Modal
-- Local Storage
 
 ## Features
 
 ### Homepage
 
 - Now showing movies: The homepage on load displays a list of now playing movies with their title and movie poster. On clicking one of the now playing movies a search is triggered and more detailed information about that title is presented to the user. 
-
-- Search filter: Searches can be customized, detailed information such as: genre, release year, synopsis, cast, and reviews are provided. The ability to display a watchable trailer, and a list of streaming services to check for availability is also provided as an option. The selections made by the user for the search are saved allowing for better ease of use when making multiple searches. The user does not need to select the same options every time and this also allows for better quick adjustments to searches. 
 
 - Quick navigation tabs: The homepage has three tabs: home, movie, and contact us. These tabs allow the user to quickly navigate to their desired section of the site without having to scroll to reach it. 
 
@@ -76,37 +71,19 @@ Using GitHub for projects
 
 ### Search 
 
-- Movie Information: Movie title, list of genres, IMDB score, release date, language, duration, and rating are provided on the top of the movie information section. A movie synopsis, list of directors, writers, cast and movie poster are provided to the user, if this information is selected to be included in the search options by the user. 
-
-- Trailer: The ability to watch a trailer on the page is provided. 
+- Movie Information: Movie title, IMDB score, release date, language are provided on the top of the movie information section. A movie synopsis and movie poster are provided to the user. 
 
 - IMDB reviews: A limited selection of reviews from the IMDB website can be displayed on the page if the user wishes to see this information. These reviews also contain the username of the reviewer, and the score they gave the movie. 
 
-- Where to watch : Where the movie is avaliable to watch is provided in this section. A list of streaming services which link to their respective pages is provided. 
-
-
-
-
-## Initial Design Concept 
-
-Once the idea for the project was agreed upon, a initial wireframe was created so development could begin on the project. This wireframe included a design for a simple user interface that included a search bar and two sections for information about a searched movie title: 
-
-![Wireframe](/assets/images/wireframe.png)
-
-As the project progressed and styling was beginning development, a more refined layout for the information section was created to act as a template for the projects styling. This layout included the placement of the movie information and movie poster: 
-
-
-![Updated Wireframe](./assets/images/movie%20info.PNG)
-
-
-
 ## Screenshot
 
-![Home page](./assets/images/live%20site%20homepage.png)
+![Home page](./assets/images/Movie Search 1.png)
 
-![Movie Info](./assets/images/live%20site%20movie%20info.png)
+![Movie Info](./assets/images/Movie Search 2.png)
 
-![Movie Reviews and contact us section](./assets/images/live%20site%20reviews.png)
+![Movie Info](./assets/images/Movie Search 3.png)
+
+![Movie Info](./assets/images/Movie Search 4.png)
 
 
 

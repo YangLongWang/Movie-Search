@@ -6,7 +6,7 @@ const searchButton = document.getElementById("searchButton");
 const nowShowingPart = document.getElementById('now-showing-part');
 const moreMoviesPart = document.getElementById('more-movies-part');
 const movies = document.getElementById('movies');
-const contactUs = document.getElementById('contactUs');
+const contactUs = document.getElementById('contact-us');
 const searchText = document.getElementById("searchText");
 
 const options = {
@@ -95,9 +95,7 @@ function clickPoster(event) {
     event.preventDefault();
 
     if (event.target.parentElement.tagName === 'FIGURE') {
-        // console.log(event.target.parentElement);
         let movieId = event.target.parentElement['id'];
-        // searchFunction(title);
         fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=en-US`, options)
             .then(res => res.json())
             .then(data => {
@@ -107,11 +105,6 @@ function clickPoster(event) {
                     let movieInfo = document.createElement("div");
                     movieInfo.classList.add('movie-info');
                     movies.appendChild(movieInfo);
-                    // // h2->class="text-center"
-                    // let title = document.createElement('h2');
-                    // title.classList.add('text-center');
-                    // title.innerHTML = movieDetails.original_title;
-                    // movieInfo.appendChild(title);
                     // div->class="row"
                     let movieRow = document.createElement("div");
                     movieRow.classList.add('row');
@@ -145,10 +138,15 @@ function clickPoster(event) {
                     moviePoster.setAttribute('alt', movieDetails.title);
                     moviePoster.setAttribute('src', posterPath);
                     figureBig.appendChild(moviePoster);
-                    // p->language class="" 
+                    // p->language class="" id="languageValue" 
                     let language = document.createElement('p');
-                    language.innerHTML = "Language: " + movieDetails.original_language
+                    let languageValue = document.createElement('span');
+                    languageValue.setAttribute('id', 'languageValue');
+                    language.classList.add('language');
+                    language.innerHTML = "Language: ";
+                    languageValue.innerHTML = movieDetails.original_language;
                     aside.appendChild(language);
+                    language.appendChild(languageValue);
                     // p->score class=""  
                     let score = document.createElement('p');
                     score.innerHTML = "Score: " + movieDetails.vote_average;
@@ -168,14 +166,12 @@ function clickPoster(event) {
 // search/movie (more)
 function searchFunction(event) {
     event.preventDefault();
+
     let textValue = searchText.value;
-    // let searchText = document.getElementById("searchText").value;
     fetch(`https://api.themoviedb.org/3/search/movie?query=${textValue}&include_adult=false&language=en-US&page=1`, options)
-        // fetch('https://api.themoviedb.org/3/search/keyword?query=' + textValue + '&page=1', options)
         .then(res => res.json())
         .then(data => {
             if (data.results) {
-                // console.log(data.results)
                 let movieArr = data.results;
                 for (let i = 0; i < movieArr.length; i++) {
                     // div->class="movie-info"
@@ -215,9 +211,14 @@ function searchFunction(event) {
                     moviePoster.setAttribute('alt', movieArr[i].title);
                     moviePoster.setAttribute('src', posterPath);
                     figureBig.appendChild(moviePoster);
-                    // p->language class="" 
+                    // p->language class="language" 
                     let language = document.createElement('p');
-                    language.innerHTML = "Language: " + movieArr[i].original_language
+                    language.classList.add('language');
+                    let languageValue = document.createElement('span');
+                    languageValue.setAttribute('class', 'languageValue');
+                    language.innerHTML = "Language: ";
+                    languageValue.innerHTML = movieArr[i].original_language;
+                    language.appendChild(languageValue);
                     aside.appendChild(language);
                     // p->score class=""  
                     let score = document.createElement('p');
@@ -249,5 +250,4 @@ searchButton.addEventListener('click', cleanFunction);
 nowShowingPart.addEventListener("click", clickPoster);
 nowShowingPart.addEventListener("click", cleanFunction);
 moreMoviesPart.addEventListener("click", clickPoster);
-moreMoviesPart.addEventListener("click", cleanFunction); //
-// 点击图片时再删除部分
+moreMoviesPart.addEventListener("click", cleanFunction);

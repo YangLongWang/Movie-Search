@@ -7,16 +7,22 @@ body {
     background-color: antiquewhite;
 }
 
+header {
+    background: linear-gradient(deepskyblue, lightblue);
+    padding: 10px 0;
+    border-radius: 10px;
+    margin: 20px;
+}
+
 .now-showing-part,
-.more-movies-part {
-    /* background-color: red; */
+.more-movies-part,
+.contact-us {
     margin: 20px;
     padding: 20px;
 }
 
 .showing-container,
 .movies-container {
-    /* background-color: black; */
     background-color: #fff;
     padding: 30px;
     margin: 25px 0 25px 0;
@@ -25,13 +31,11 @@ body {
 }
 
 #loadImg .figure {
-    /* background-color: green; */
     margin: 0 15px;
 }
 
 .img-fluid {
     width: 150px;
-    /* height: 250px; */
 }
 
 .figure {
@@ -61,7 +65,6 @@ body {
     white-space: nowrap;
     animation: animate var(--t) linear infinite;
     animation-delay: calc(var(--t) * -1);
-    /* animation-delay: -2s; */
 }
 
 @keyframes animate {
@@ -79,10 +82,7 @@ body {
 }
 
 /* movie_info */
-/* 颜色需要调整 */
-/* 没有图片的电影 海报位置需要统一width/hight 不一定 最后在看 */
 .movie-info {
-    /* background-color: red; */
     margin: 3px 100px;
     padding: 13px;
 }
@@ -94,7 +94,6 @@ body {
 }
 
 .info {
-    /* background-color: green; */
     margin-top: 30px;
 }
 
@@ -105,10 +104,41 @@ body {
     font-weight: bold;
 }
 
+#languageValue,
+.languageValue {
+    text-transform: uppercase;
+}
+
 .figure-big {
     margin-top: 20px;
 }
 
 .figure-caption {
     font-weight: bold;
+}
+
+footer {
+    background-color: lightblue;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 430px) {
+
+    .now-showing-part,
+    .more-movies-part,
+    .contact-us {
+        width: 90%;
+    }
+
+    .movie-info {
+        margin: 3px auto;
+    }
+
+    .info {
+        margin-top: 10px;
+    }
+
+    .movie-info .row {
+        margin-top: 0;
+    }
 }
